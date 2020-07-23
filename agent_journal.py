@@ -3,6 +3,7 @@ from mesa import Agent, Model
 from mesa.time import RandomActivation
 import itertools
 from mesa.space import MultiGrid
+import class_assign
 
 class Person(Agent):
     # start with fixing the number of contacts = 0
@@ -11,13 +12,25 @@ class Person(Agent):
         super().__init__(unique_id, model)
         self.type = persontype
         self.metlast = []
+        self.classes = model.classes[:,unique_id]
+        self.model = model
         
     def move(self):
-        possible_steps = self.model.grid.get_neighborhood(
-            self.pos,
-            moore=True,
-            include_center=False)
-        new_position = self.random.choice(possible_steps)
+        if self.model.tick < len(self.classes):
+            # this assumes that the number of grid points is greater 
+            # than the number of classes
+            # i.e. TODO: implement fancy mod math / and or better class room grid
+            
+            new_position = 0,self.classes[self.model.tick]
+            
+        else:
+            possible_steps = self.model.grid.get_neighborhood(
+                self.pos,
+                moore=True,
+                include_center=False)
+            new_position = self.random.choice(possible_steps)
+        
+        
         self.model.grid.move_agent(self, new_position)
         
     def step(self):
@@ -26,12 +39,19 @@ class Person(Agent):
        
 class UnivModel(Model):
     """A model with some number of agents."""
-    def __init__(self, N, width, height):
+    def __init__(self, N, width, height, class_periods = 3, class_size = 3):
         self.num_agents = N
         self.grid = MultiGrid(width, height, False)
         self.schedule = RandomActivation(self)
         self.contactjournal = np.zeros((N,N), dtype=int)
         self.contactrep = np.zeros((N,N), dtype=int) # type 2 contact
+        classdet = class_assign.class_assign(N,
+                                             class_periods,
+                                             class_size)
+        self.classes = classdet[0]
+        numberclasses = classdet[1]
+        print("the number of classes is: ", numberclasses)
+        self.tick = 0
         
         # Create agents
         for i in range(self.num_agents):
@@ -42,11 +62,14 @@ class UnivModel(Model):
             x = self.random.randrange(self.grid.width)
             y = self.random.randrange(self.grid.height)
             self.grid.place_agent(a, (x, y))
+            
+        
 
     def step(self):
         '''Advance the model by one step, 
         then update the contact matrix. '''
         self.schedule.step()
+        self.tick += 1
         # need to iterate (hopefully not) through the gridpoints
         # then add up all the contacts
         
@@ -57,9 +80,6 @@ class UnivModel(Model):
                 combos = list(itertools.combinations(agents, 2))
             
                 for pair in combos:
-                    
-                    # print(pair)
-                    # print(pair[0].unique_id.dtype)
 
                     self.contactjournal[pair[0].unique_id,pair[1].unique_id] += 1
                     self.contactjournal[pair[1].unique_id,pair[0].unique_id] += 1
@@ -68,7 +88,7 @@ class UnivModel(Model):
                     if pair[0].unique_id not in pair[1].metlast:
                         self.contactrep[pair[0].unique_id,pair[1].unique_id] += 1
                         self.contactrep[pair[1].unique_id,pair[0].unique_id] += 1
-                        #print("screech")
+                        
                         
                 
             # assign met last
@@ -85,7 +105,7 @@ def contactnumbers(model, returnarr = True):
         total_interactions = np.sum(model.contactrep, axis = -1)
         
         # type 3
-        typ3true = (model.contactjournal == 0)
+        typ3true = (model.contactjournal != 0)
         total_type3 = np.sum(typ3true, axis = -1)
         
         if returnarr:
@@ -99,12 +119,6 @@ def contactnumbers(model, returnarr = True):
             return mean1, mean2, mean3
             
 
-
-def old_count_contacts(self):
-    cellmates = self.model.grid.get_cell_list_contents([self.pos])
-    self.totalcontacts += len(cellmates)-1
-    
-    
 
 
 

@@ -11,4 +11,4 @@ def class_assign(num_students,class_periods,class_size):
     schedule = np.repeat([class_slots],class_periods,0)
     [np.random.shuffle(x) for x in schedule]
     
-    return schedule
+    return schedule, num_classes
