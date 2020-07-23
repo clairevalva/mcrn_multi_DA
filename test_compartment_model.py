@@ -29,7 +29,8 @@ gamma = 0.125
 beta = .15
 C = [[1, 0],[0,1]]
 t_range = [0, total_days] # Choose unit time for ease, change later with dates
-t_intervention = 6
+t_resample = 1 # Resample from the agent model every so often (1 -> 1 day resample)
+maxstep = 0.01 # Maximum step size for the integrator
 
 # Initial conditions
 #S = [33500,168000-33499]
@@ -38,16 +39,11 @@ I = [0,1]
 R = [0,0]
 y_0 = np.array([S,I,R]).flatten()
 
-# Main
-# Run without intervention
-pleasework = sint.solve_ivp(methods.f, t_range, y_0, max_step = 0.1, args=(n, beta, gamma, C))
-
-# Run with intervention
-#pleasework = sint.solve_ivp(methods.f_intervention, t_range, y_0, max_step = 0.01, args=(n, beta, gamma, C,t_intervention))
-
+# Run Multiscale Model
+solution = sint.solve_ivp(methods.f_multiscale, t_range, y_0, max_step = maxstep, args=(n, beta, gamma, t_resample, maxstep))
 
 # Reshape solution
-shaped = np.reshape(pleasework.y, (3,n,len(pleasework.t)))
+shaped = np.reshape(solution.y, (3,n,len(solution.t)))
 
 #comp1 = shaped[:,0,:]
 
@@ -100,15 +96,15 @@ fc_data = pd.concat([fc_cases, fc_deaths], axis=1, sort=False)
 # Plot Model City vs. Real Data (Fort Collins, CO)
 plt.clf()
 sns.set_context("poster")
-plt.scatter(pleasework.t,np.add(shaped[1,0,:], shaped[1,1,:]),label = "I, City")
+plt.scatter(solution.t,np.add(shaped[1,0,:], shaped[1,1,:]),label = "I, City")
 plt.legend()
 plt.show()
 
 # Plot City and University
 # plt.clf()
 # sns.set_context("poster")
-# plt.scatter(pleasework.t,np.add(shaped[1,0,:], shaped[1,1,:]),label = "I, City")
-# plt.scatter(pleasework.t,shaped[1,0,:],label = "I, University")
+# plt.scatter(solution.t,np.add(shaped[1,0,:], shaped[1,1,:]),label = "I, City")
+# plt.scatter(solution.t,shaped[1,0,:],label = "I, University")
 # plt.legend()
 # plt.show()
 
@@ -117,18 +113,18 @@ plt.show()
 # # Plot
 # compartment = 1
 # plt.clf()
-# plt.scatter(pleasework.t,shaped[0,compartment,:],label = "S")
-# plt.scatter(pleasework.t,shaped[1,compartment,:],label = "I")
-# plt.scatter(pleasework.t,shaped[2,compartment,:],label = "R")
+# plt.scatter(solution.t,shaped[0,compartment,:],label = "S")
+# plt.scatter(solution.t,shaped[1,compartment,:],label = "I")
+# plt.scatter(solution.t,shaped[2,compartment,:],label = "R")
 # plt.legend()
 # plt.show()
 #
 # # Plot
 # compartment = 0
 # plt.clf()
-# plt.scatter(pleasework.t,shaped[0,compartment,:],label = "S")
-# plt.scatter(pleasework.t,shaped[1,compartment,:],label = "I")
-# plt.scatter(pleasework.t,shaped[2,compartment,:],label = "R")
+# plt.scatter(solution.t,shaped[0,compartment,:],label = "S")
+# plt.scatter(solution.t,shaped[1,compartment,:],label = "I")
+# plt.scatter(solution.t,shaped[2,compartment,:],label = "R")
 # plt.legend()
 # plt.show()
 

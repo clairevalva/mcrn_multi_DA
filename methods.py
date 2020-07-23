@@ -6,6 +6,7 @@ import numpy as np
 import scipy as scp
 import scipy.integrate as sint
 import matplotlib.pyplot as plt
+import agent_journal
 
 #######################################################################################################################
 '''Methods for generating initial data'''
@@ -49,13 +50,16 @@ def f(t, y, n, beta, gamma, C):
 
     return np.array([sdot, idot, rdot]).flatten()
 
-def f_intervention(t, y, n, beta, gamma, C,t_intervention):
+def f_multiscale(t, y, n, beta, gamma, t_resample, maxstep):
+
+    # Build SIR solution vector
     S = y[:n]
     I = y[n:2 * n]
     R = y[2 * n:3 * n]
 
-    if t > t_intervention:
-        C[0][0] = 0
+    # Call agent based model to get C for university
+    if t % t_resample < maxstep*10**-3: # Within tolerance of 0 but smaller than the max step
+        C = agent_journal.getcontacts
 
     sdot = compute_sdot(S, I, R, beta, C)
     idot = compute_idot(S, I, R, beta, C, gamma)
