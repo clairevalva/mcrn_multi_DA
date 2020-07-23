@@ -51,6 +51,5 @@ y_0 = np.array([S,I,R]).flatten()
 for step in range(len(Cs)):
     # Run Multiscale Model
     solution = sint.solve_ivp(methods.f, t_range, y_0, max_step = maxstep, args=(n, beta, gamma, Cs[step]))
-    np.save("SIRs/class_size=" + str(sizes[step]) + ".npy", solution)
-
+    np.save("SIRs/class_size=" + str(sizes[step]) + ".npy", [solution.t,solution.y])
 

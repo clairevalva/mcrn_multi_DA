@@ -1,7 +1,4 @@
-# Reshape solution
-shaped = np.reshape(solution.y, (3,n,len(solution.t)))
 
-#comp1 = shaped[:,0,:]
 
 #######################################################################################################################
 '''Fetch Fort Collins Data'''
