@@ -13,8 +13,8 @@ def seird_f(t, y, n, beta, gamma, lam, kappa,  C):
     S = y[:n]
     E = y[n:2 * n]
     I = y[2 * n:3 * n]
-    R = y[3 * n:4 * n]
-    D = y[4 * n:5 * n] # D Is not relevant for the dynamics really
+    A = y[3 * n:4 * n]
+    R = y[4 * n:5 * n] # D Is not relevant for the dynamics really
 
     # 1/(total size) of each compartment (not counting D)
     inv_pop = np.divide(np.ones_like(S + E + I + R, dtype=float), S + E + I + R)

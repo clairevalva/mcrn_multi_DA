@@ -10,11 +10,11 @@ import compartmental_seird
 # Parameters
 n = 2 # Number of compartments
 beta = 0.69 # Infection rate (chosen from paper)
-lam = 0.004 # Inverse of latent time to infection (chosen from paper)
-gamma = 0.07 # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
-kappa = 0.035 # Death rate (found from (US Deaths/US Infections))
+gamma = 0.07 # Inverse of latent time to infection (chosen from paper)
+lam = 0.1 # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
+kappa = 0.002 # Death rate (found from (US Deaths/US Infections))
 time_interval = [0, 100]
-C = [[1, 1], [1, 1]]
+C = [[1, .5], [.5, 1]]
 
 # Initial conditions
 S = [33500, 168000-33499]
@@ -34,9 +34,10 @@ solution = sint.solve_ivp(compartmental_seird.seird_f, time_interval, y_0, max_s
 
 # Plot for a test
 # Reshape solution
-shaped = [np.reshape(solution.y, (5, n, np.size(solution.t)))]
+shaped = np.array([np.reshape(solution.y, (5, n, np.size(solution.t)))])
 # Plot I for compartment 0 + 1
-plt.scatter(solution.t, np.add(shaped[0, 2, 0, :], shaped[0, 2, 1, :]), label="I, City")
+for i in range(0, 5):
+    plt.scatter(solution.t, np.add(shaped[0, i, 0, :], shaped[0, i, 1, :]), label="City " + str(i))
 
 plt.legend()
 plt.show()
