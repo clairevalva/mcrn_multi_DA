@@ -1,6 +1,6 @@
 import numpy as np
 
-def seird_f(t, y, n, beta, gamma, lam, kappa,  C):
+def seird_f(t, y, n, beta, gamma, lam, kappa,  C, perq):
     '''
     beta = infection rate
     gamma = inverse latent time before infection onset
@@ -12,20 +12,22 @@ def seird_f(t, y, n, beta, gamma, lam, kappa,  C):
     # Partition solution vector into the SEIRD portions
     S = y[:n]
     E = y[n:2 * n]
-    I = y[2 * n:3 * n]
-    R = y[3 * n:4 * n]
-    D = y[4 * n:5 * n] # D Is not relevant for the dynamics really
+    Q = y[2 * n:3 * n]
+    I = y[3 * n:4 * n]
+    R = y[4 * n:5 * n]
+    D = y[5 * n:6 * n] # D Is not relevant for the dynamics really
 
     # 1/(total size) of each compartment (not counting D)
     inv_pop = np.divide(np.ones_like(S + E + I + R, dtype=float), S + E + I + R)
 
     Sdot = compute_Sdot(S, I, inv_pop, beta, C)
     Edot = compute_Edot(S, E, I, inv_pop, beta, gamma, C)
-    Idot = compute_Idot(E, I, gamma, lam, kappa)
-    Rdot = compute_Rdot(I, lam)
-    Ddot = compute_Ddot(I, kappa)
+    Qdot = compute_Qdot(E, Q, gamma, lam, kappa, perq)
+    Idot = compute_Idot(E, I, gamma, lam, kappa, perq)
+    Rdot = compute_Rdot(I, Q, lam)
+    Ddot = compute_Ddot(I, Q, kappa)
 
-    return np.array([Sdot, Edot, Idot, Rdot, Ddot]).flatten()
+    return np.array([Sdot, Edot, Qdot, Idot, Rdot, Ddot]).flatten()
 
 # Derivatives for SEIRD
 def compute_Sdot(S, I, inv_pop, beta, C):
@@ -38,20 +40,25 @@ def compute_Sdot(S, I, inv_pop, beta, C):
 
     return np.array(Sdot)
 
+def compute_Qdot(E, Q, gamma, lam, kappa, perq):
+    t1 = gamma*perq
+    
+    return E*t1 - lam*kappa*Q
+    
+
 def compute_Edot(S, E, I, inv_pop, beta, gamma, C):
 
     Sdot = -1 * compute_Sdot(S, I, inv_pop, beta, C)
-
     return Sdot - gamma * E
 
-def compute_Idot(E, I, gamma, lam, kappa):
+def compute_Idot(E, I, gamma, lam, kappa, perq):
 
-    return gamma * E - (lam + kappa) * I
+    return (1 - perq)*gamma * E - (lam + kappa) * I
 
-def compute_Rdot(I, lam):
+def compute_Rdot(I, Q, lam):
 
-    return lam * I
+    return lam * (I + Q)
 
-def compute_Ddot(I, kappa):
+def compute_Ddot(I, Q, kappa):
 
-    return kappa * I
+    return kappa * (I + Q)
