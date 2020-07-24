@@ -40,17 +40,20 @@ class Person(Agent):
 class UnivModel(Model):
     """A model with some number of agents."""
     def __init__(self, N, width, height, class_periods = 3, class_size = 3):
+        
         self.num_agents = N
         self.grid = MultiGrid(width, height, False)
         self.schedule = RandomActivation(self)
         self.contactjournal = np.zeros((N,N), dtype=int)
         self.contactrep = np.zeros((N,N), dtype=int) # type 2 contact
-        classdet = class_assign.class_assign(N,
-                                             class_periods,
-                                             class_size)
+        
+        self.shuffled = np.array(random.shuffle(np.array(range(N))))
+        
+        classdet = class_assign.class_assign(N, class_periods, class_size)
         self.classes = classdet[0]
         numberclasses = classdet[1]
         print("the number of classes is: ", numberclasses)
+        
         self.tick = 0
         
         # Create agents
@@ -65,13 +68,23 @@ class UnivModel(Model):
             
         
 
-    def step(self):
+    def step(self, toremove = [], toadd = []):
         '''Advance the model by one step, 
-        then update the contact matrix. '''
+        then update the contact matrix. 
+        removes agents in the toremove list, 
+        adds agents in the to add list'''
+        
+        for ag in toremove:
+            del self._agents[ag]
+            
+        for ag in toadd:
+            self._agents[ag] = Person(ag, "student", self)
+        
         self.schedule.step()
         self.tick += 1
         # need to iterate (hopefully not) through the gridpoints
         # then add up all the contacts
+        
         
         for cell in self.grid.coord_iter():
             agents, x, y = cell
