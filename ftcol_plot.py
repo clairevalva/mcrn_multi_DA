@@ -1,8 +1,15 @@
-
-
 #######################################################################################################################
 '''Fetch Fort Collins Data'''
 #######################################################################################################################
+
+# Data
+start_date = '03-09-2020'
+end_date = '07-22-2020'
+date_format = "%m-%d-%Y"
+begin = datetime.strptime(start_date, date_format)
+finish = datetime.strptime(end_date, date_format)
+delta_days = finish - begin
+total_days = delta_days.total_seconds()/86400 #convert from seconds to days.
 
 # Fetch from URL
 # url_cases = 'https://apps.larimer.org/api/covid/?t=1595446631841&gid=1219297132&csv=cases'

@@ -11,6 +11,10 @@ import agent_journal
 #######################################################################################################################
 '''Methods for generating initial data'''
 #######################################################################################################################
+
+''' Here we can keep the generate S and I.  We should not need to use R as we can assume this to be zero at the start
+for all of our runs.  Else, we should add generate E as well. D will never be necessary to generate.'''
+
 def generate_S(n=3, scale=1):
     arr = np.ones((n))
     ex = np.array([float(10) ** (j * scale) for j in range(1, n + 1)])

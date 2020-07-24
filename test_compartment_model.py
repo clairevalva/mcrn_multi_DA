@@ -10,19 +10,11 @@ import pandas as pd
 from datetime import datetime, date
 import requests
 import scale_cm
+import compartmental_seird
 
 '''
 TODO: Allow for time varying C in the SIR model
 '''
-
-# Data
-start_date = '03-09-2020'
-end_date = '07-22-2020'
-date_format = "%m-%d-%Y"
-begin = datetime.strptime(start_date, date_format)
-finish = datetime.strptime(end_date, date_format)
-delta_days = finish - begin
-total_days = delta_days.total_seconds()/86400 #convert from seconds to days.
 
 # Parameters
 n = 2
@@ -52,4 +44,3 @@ for step in range(len(Cs)):
     # Run Multiscale Model
     solution = sint.solve_ivp(methods.f, t_range, y_0, max_step = maxstep, args=(n, beta, gamma, Cs[step]))
     np.save("SIRs/class_size=" + str(sizes[step]) + ".npy", [solution.t,solution.y])
-
