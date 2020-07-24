@@ -4,6 +4,7 @@ from mesa.time import RandomActivation
 import itertools
 from mesa.space import MultiGrid
 import class_assign
+import random
 
 class Person(Agent):
     # start with fixing the number of contacts = 0
@@ -75,10 +76,10 @@ class UnivModel(Model):
         adds agents in the to add list'''
         
         for ag in toremove:
-            del self._agents[ag]
+            del self.schedule._agents[ag]
             
         for ag in toadd:
-            self._agents[ag] = Person(ag, "student", self)
+            self.schedule._agents[ag] = Person(ag, "student", self)
         
         self.schedule.step()
         self.tick += 1

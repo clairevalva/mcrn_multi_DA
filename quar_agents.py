@@ -2,9 +2,10 @@
 # can either use the same agents as previous day or not
 
 import numpy as np
+import random
 
 
-def remove_ls(num, tick, N, model, previous = False, uselist = []):
+def remove_ls(num, tick, N, previous = False, uselist = []):
     ''' 
     unless other list is prescribed, 
     choses random num of agents to remove
