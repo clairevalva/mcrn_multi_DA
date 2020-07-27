@@ -18,8 +18,8 @@ def seqird(t, y, n, beta, gamma, lam, kappa, C, Q_percent):
     R = y[4 * n:5 * n]
     D = y[5 * n:6 * n]  # D Is not relevant for the dynamics really
 
-    # 1/(total size) of each compartment (not counting D)
-    inv_pop = np.divide(np.ones_like(S + E + Q + I + R, dtype=float), S + E + Q + I + R)
+    # 1/(total size) of each compartment (not counting Q or D)
+    inv_pop = np.divide(np.ones_like(S + E + I + R, dtype=float), S + E + I + R)
 
     Sdot = compute_Sdot(S, I, inv_pop, beta, C)
     Edot = compute_Edot(S, E, I, inv_pop, beta, gamma, C)
