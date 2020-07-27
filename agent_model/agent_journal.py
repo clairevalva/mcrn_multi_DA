@@ -40,7 +40,9 @@ class Person(Agent):
        
 class UnivModel(Model):
     """A model with some number of agents."""
-    def __init__(self, N, width, height, class_periods = 3, class_size = 3):
+    def __init__(self, N, width, height, class_periods = 3, class_size = 3, majors = False):
+        # majors is false if not implemented
+        #otherwise majors should be the number of persons per major
         
         self.num_agents = N
         self.grid = MultiGrid(width, height, False)
@@ -50,8 +52,13 @@ class UnivModel(Model):
         
         self.shuffled = np.array(random.shuffle(np.array(range(N))))
         
-        classdet = class_assign.class_assign(N, class_periods, class_size)
-        self.classes = classdet[0]
+        if not majors:
+            classdet = class_assign.class_assign(N, class_periods, class_size)
+            self.classes = classdet[0]
+        else:
+            classdet = class_assign.class_assign_majors(N, class_periods, class_size)
+            self.classes = class_assign.reshape_formod(classdet[0])
+        
         numberclasses = classdet[1]
         #print("the number of classes is: ", numberclasses)
         
