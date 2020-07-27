@@ -37,3 +37,13 @@ def class_assign_majors(num_students, class_periods, class_size, major_size = 50
     
     # shape of schedule should be num of majors x periods x classes
     return schedule, num_classes
+
+def reshape_formod(schedule):
+    # shape of schedule should be num of majors x periods x classes
+    
+    rolled = np.moveaxis(schedule, 1, 0)
+    shaped = np.array([xx.flatten() for xx in rolled])
+    
+    # reshaped should have shape # periods, num of majors times classes
+    return shaped
+
