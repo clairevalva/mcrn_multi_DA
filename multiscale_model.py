@@ -152,7 +152,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
                 num_removeB = 0
                 
 
-    np.save("plotting/testc11s.npy", Cs)
+    np.save("plotting/testCs.npy", Cs)
     np.save("plotting/testsolutions.npy", solutions)
 
 
