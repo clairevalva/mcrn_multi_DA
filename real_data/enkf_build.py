@@ -3,6 +3,7 @@ import numpy as np
 import numpy.linalg as nla
 import numpy.random as npr
 import scipy.integrate
+from dapper import *
 
 M = 3 # ndim
 p = 3 # ndim obs
@@ -29,9 +30,42 @@ yy    = np.zeros((KObs+1,p))
 xx[0] = mu0 + P0_chol @ npr.randn(M)
 xxhat = np.zeros((K+1,M))
 
+
+def estimate_mean_and_cov(E):
+    M, N = E.shape
+
+    x_bar = np.sum(E, axis=1) / N
+    B_bar = np.zeros((M, M))
+    for n in range(N):
+        xc = (E[:, n] - x_bar)[:, None]  # x_centered
+        B_bar += xc @ xc.T
+        # B_bar += np.outer(xc,xc)
+    B_bar /= (N - 1)
+
+    return x_bar, B_bar
+
+def estimate_cross_cov(Ex,Ey):
+    N = Ex.shape[1]
+    assert N==Ey.shape[1]
+    X = Ex - np.mean(Ex,axis=1,keepdims=True)
+    Y = Ey - np.mean(Ey,axis=1,keepdims=True)
+    CC = X @ Y.T / (N-1)
+    return CC
+
+def dxdt(x):
+    sig  = 10.0
+    rho  = 28.0
+    beta = 8.0/3
+    x,y,z = x
+    d     = np.zeros(3)
+    d[0]  = sig*(y - x)
+    d[1]  = rho*x - y - x*z
+    d[2]  = x*y - beta*z
+    return d
+
 def Dyn(E, t0, dt):
     def step(x0):
-        return scipy.integrate.RK45(lambda t, x: dxdt(x), x0, t0, dt)
+        return rk4(lambda t, x: dxdt(x), x0, t0, dt)
 
     if E.ndim == 1:
         # Truth (single state vector) case
@@ -56,16 +90,7 @@ for k in range(1,K+1):
         yy[kObs] = Obs(xx[k],np.nan) + R_chol @ npr.randn(p)
 
 # METHODS
-def dxdt(x):
-    sig  = 10.0
-    rho  = 28.0
-    beta = 8.0/3
-    x,y,z = x
-    d     = np.np.zeros(3)
-    d[0]  = sig*(y - x)
-    d[1]  = rho*x - y - x*z
-    d[2]  = x*y - beta*z
-    return d
+
 
 
 # Useful linear algebra: compute B/A
@@ -73,19 +98,19 @@ def divide_1st_by_2nd(B,A):
     return nla.solve(A.T,B.T).T
 
 def my_EnKF(N):
-    E = mu0[:,None] + P0_chol @ npr.randn((M,N))
+    E = mu0[:,None] + P0_chol @ npr.randn(M, N)
     for k in range(1,K+1):
         # Forecast
         t   = k*dt
         E   = Dyn(E,t-dt,dt)
-        E  += Q_chol @ npr.randn((M,N))
+        E  += Q_chol @ npr.randn(M, N)
         if not k%dkObs:
             # Analysis
             y        = yy[k//dkObs-1] # current obs
             Eo       = Obs(E,t)
-            BH       = np.estimate_cross_cov(E,Eo)
-            HBH      = np.estimate_mean_and_cov(Eo)[1]
-            Perturb  = R_chol @ npr.randn((p,N))
+            BH       = estimate_cross_cov(E,Eo)
+            HBH      = estimate_mean_and_cov(Eo)[1]
+            Perturb  = R_chol @ npr.randn(p, N)
             KG       = divide_1st_by_2nd(BH, HBH+R)
             E       += KG @ (y[:,None] - Perturb - Eo)
         xxhat[k] = np.mean(E,axis=1)
