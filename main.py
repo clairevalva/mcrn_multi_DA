@@ -22,6 +22,7 @@ gamma = 0.07 # Inverse of latent time to infection (chosen from paper)
 lam = 0.1 # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
 kappa = 0.002 # Death rate (found from (US Deaths/US Infections))
 Q_percent = 1/5 # Quarantine percentage
+stype = "none"
 
 # Initial conditions
 # CSU, Fort Collins, Larimer County population sizes
@@ -35,8 +36,11 @@ initial_infected = 1/scaling # Always starts in the largest compartment!
 
 # Run information
 num_weeks = 1
-
+''' 
+    schedule_types can be "none" (no daily schedule),
+    "day_stagger", or "week_stagger"
+    '''
 # Run and plot
 multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
-                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes)
+                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizesyp, schedule_types = stype)
 plot.draw(class_periods, class_size)
