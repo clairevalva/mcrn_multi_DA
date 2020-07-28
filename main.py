@@ -21,6 +21,7 @@ gamma = 0.07 # Inverse of latent time to infection (chosen from paper)
 lam = 0.1 # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
 kappa = 0.002 # Death rate (found from (US Deaths/US Infections))
 Q_percent = 1/5 # Quarantine percentage, set to 0 for no quarantining
+major_size = False # false if no major separation, true otherwise
 
 ''' 
     schedule_types can be "none" (no daily schedule),
@@ -43,5 +44,5 @@ num_weeks = 6
 
 # Run and plot
 Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
-                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype)
+                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size)
 

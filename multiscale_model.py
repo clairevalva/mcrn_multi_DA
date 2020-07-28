@@ -5,7 +5,7 @@ from agent_model import agent_journal, quar_agents
 
 def run(initial_infected, num_weeks, class_periods, class_size,
         n, beta, gamma, lam, kappa, C, Q_percent, compartment_sizes,
-       schedule_type = "none"):
+       schedule_type = "none", majors = False):
     
     ''' 
     schedule_types can be "none" (no daily schedule),
@@ -57,7 +57,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     Cs = []
 
     # Set agent model parameters
-    model = agent_journal.UnivModel(S[0], 5, S[0], class_periods=class_periods, class_size=class_size)
+    model = agent_journal.UnivModel(S[0], 5, S[0], class_periods=class_periods, class_size=class_size, majors = majors)
     num_removeA = 0
     num_removeB = 0
 
@@ -158,7 +158,7 @@ def compute_contact_rate(model, num_removed):
 
     removels = quar_agents.remove_ls(num_removed, model.tick, model.num_agents)
 
-    model = agent_journal.UnivModel(model.num_agents, 5, model.num_agents, class_periods=model.class_periods, class_size=model.class_size)
+    model = agent_journal.UnivModel(model.num_agents, 5, model.num_agents, class_periods=model.class_periods, class_size=model.class_size, majors = model.majorsize)
     model.step(toremove=removels)
 
     for _ in range(model.class_periods):

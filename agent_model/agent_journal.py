@@ -57,6 +57,7 @@ class UnivModel(Model):
         self.contactrep = np.zeros((N,N), dtype=int) # type 2 contact
         self.class_periods = class_periods
         self.class_size = class_size
+        self.majorsize = majors
         
         self.shuffled = np.array(random.shuffle(np.array(range(N))))
         
@@ -66,6 +67,7 @@ class UnivModel(Model):
         else:
             classdet = class_assign_funcs.class_assign_majors(N, class_periods, class_size)
             self.classes = class_assign_funcs.reshape_formod(classdet[0])
+            
         
         numberclasses = classdet[1]
         #print("the number of classes is: ", numberclasses)
