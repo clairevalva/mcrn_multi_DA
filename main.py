@@ -39,9 +39,11 @@ initial_infected = 1 # Always starts in the largest compartment!
 
 
 # Run information
-num_weeks = 2
+num_weeks = 6
 
 # Run and plot
-multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
+Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
                      n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype)
-plot.draw(class_periods, class_size)
+
+# np.save("plotting/testCs.npy", Cs)
+# np.save("plotting/testsolutions.npy", solutions)

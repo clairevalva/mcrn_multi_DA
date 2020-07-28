@@ -150,10 +150,8 @@ def run(initial_infected, num_weeks, class_periods, class_size,
                 num_removeB = int(quarantined_individuals+dead_individuals)
             else:
                 num_removeB = 0
-                
-
-    np.save("plotting/testCs.npy", Cs)
-    np.save("plotting/testsolutions.npy", solutions)
+            
+    return Cs, solutions
 
 
 def compute_contact_rate(model, num_removed):
