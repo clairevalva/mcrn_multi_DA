@@ -20,6 +20,11 @@ def seqird(t, y, n, beta, gamma, lam, kappa, C, Q_percent):
 
     # 1/(total size) of each compartment
     inv_pop = np.divide(np.ones_like(S + E + I + R + Q + D, dtype=float), S + E + I + R + Q + D)
+    
+    for xx in range(len(inv_pop)):
+        if inv_pop[xx] == np.inf:
+            inv_pop[xx] = 1
+                   
 
     Sdot = compute_Sdot(S, I, inv_pop, beta, C)
     Edot = compute_Edot(S, E, I, inv_pop, beta, gamma, C)
