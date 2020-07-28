@@ -38,5 +38,5 @@ number_of_days = 40
 
 # Run and plot
 multiscale_model.run(initial_infected, number_of_days, class_periods, class_size,
-                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, scaling)
-plot.draw(class_periods, class_size, scaling)
+                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes)
+plot.draw(class_periods, class_size)

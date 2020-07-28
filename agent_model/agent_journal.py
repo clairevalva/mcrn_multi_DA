@@ -49,6 +49,8 @@ class UnivModel(Model):
         self.schedule = RandomActivation(self)
         self.contactjournal = np.zeros((N,N), dtype=int)
         self.contactrep = np.zeros((N,N), dtype=int) # type 2 contact
+        self.class_periods = class_periods
+        self.class_size = class_size
         
         self.shuffled = np.array(random.shuffle(np.array(range(N))))
         

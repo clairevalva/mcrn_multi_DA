@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def draw(class_periods, class_size, scaling):
+def draw(class_periods, class_size):
     c11s = np.load("plotting/testc11s.npy", allow_pickle=True)
     solutions = np.load("plotting/testsolutions.npy", allow_pickle=True)
 
@@ -21,7 +21,7 @@ def draw(class_periods, class_size, scaling):
     plt.ylabel("Infected")
 
     # Choose what to plot
-    plt.scatter(t, scaling * (y[2,0]+ y[2,1] + y[3,0] + y[3,1]), label="Total Infected") # Total infected = sum(Qi+Ii)
+    plt.scatter(t, (y[2,0]+ y[2,1] + y[3,0] + y[3,1]), label="Total Infected") # Total infected = sum(Qi+Ii)
     plt.legend()
     plt.show()
 
