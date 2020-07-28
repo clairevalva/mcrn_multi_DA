@@ -34,9 +34,9 @@ initial_infected = 1/scaling # Always starts in the largest compartment!
 
 
 # Run information
-number_of_days = 40
+num_weeks = 1
 
 # Run and plot
-multiscale_model.run(initial_infected, number_of_days, class_periods, class_size,
+multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
                      n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes)
 plot.draw(class_periods, class_size)

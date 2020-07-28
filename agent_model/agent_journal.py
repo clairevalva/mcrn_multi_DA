@@ -3,7 +3,13 @@ from mesa import Agent, Model
 from mesa.time import RandomActivation
 import itertools
 from mesa.space import MultiGrid
-from agent_model import class_assign
+
+# some_file.py
+import sys
+# insert at 1, 0 is the script path (or '' in REPL)
+sys.path.insert(1, 'agent_model/')
+
+import class_assign_funcs
 import random
 
 class Person(Agent):
@@ -55,11 +61,11 @@ class UnivModel(Model):
         self.shuffled = np.array(random.shuffle(np.array(range(N))))
         
         if not majors:
-            classdet = class_assign.class_assign(N, class_periods, class_size)
+            classdet = class_assign_funcs.class_assign(N, class_periods, class_size)
             self.classes = classdet[0]
         else:
-            classdet = class_assign.class_assign_majors(N, class_periods, class_size)
-            self.classes = class_assign.reshape_formod(classdet[0])
+            classdet = class_assign_funcs.class_assign_majors(N, class_periods, class_size)
+            self.classes = class_assign_funcs.reshape_formod(classdet[0])
         
         numberclasses = classdet[1]
         #print("the number of classes is: ", numberclasses)

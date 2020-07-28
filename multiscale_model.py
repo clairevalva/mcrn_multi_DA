@@ -30,7 +30,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     model = agent_journal.UnivModel(S[0], 5, S[0], class_periods=class_periods, class_size=class_size)
     num_remove = 0
 
-    for _ in range(num_weeks):
+    for wk in range(num_weeks):
         for day in range(7):
 
             # for unstaggered weekly schedule
@@ -66,32 +66,33 @@ def run(initial_infected, num_weeks, class_periods, class_size,
             #         C[0, 0] = 0
             #         C[2, 2] = 0
 
-        C[0, 0] = compute_contact_rate(model, num_remove)
-        c11s.append(C[0, 0])
+            C[0, 0] = compute_contact_rate(model, num_remove)
+            c11s.append(C[0, 0])
 
-        interval = [time_stops[day], time_stops[day + 1]]
-        print("C = " + str(C))
-        print("num_remove = " + str(num_remove))
+            interval = [7*wk+day, 7*wk+day+1]
+            print("Day = " + str(7*wk+day+1))
+            print("C = " + str(C))
+            print("num_remove = " + str(num_remove))
 
-        ## Run compartmental model for one day
-        solution = sint.solve_ivp(compartmental_model.seqird, interval, y_0, max_step=maxstep,
-                                  args=(n, beta, gamma, lam, kappa, C, Q_percent))
-        
-        ## Append to group
-        solutions.append(solution)
+            ## Run compartmental model for one day
+            solution = sint.solve_ivp(compartmental_model.seqird, interval, y_0, max_step=maxstep,
+                                    args=(n, beta, gamma, lam, kappa, C, Q_percent))
+            
+            ## Append to group
+            solutions.append(solution)
 
-        ## Get new initial condition
-        # Reshape solution array
-        shaped = np.array([np.reshape(solution.y, (6, n, np.size(solution.t)))])
+            ## Get new initial condition
+            # Reshape solution array
+            shaped = np.array([np.reshape(solution.y, (6, n, np.size(solution.t)))])
 
-        # New initial condition, get final 
-        y_0 = shaped[0, :, :, -1].flatten()
+            # New initial condition, get final 
+            y_0 = shaped[0, :, :, -1].flatten()
 
 
-        ## New Agent Model w/ certain number removed
-        quarantined_individuals = shaped[0, 2, 0, -1]
-        dead_individuals = shaped[0, -1, 0, -1]
-        num_remove = int(quarantined_individuals+dead_individuals) # comment out this line for no quarantining
+            ## New Agent Model w/ certain number removed
+            quarantined_individuals = shaped[0, 2, 0, -1]
+            dead_individuals = shaped[0, -1, 0, -1]
+            num_remove = int(quarantined_individuals+dead_individuals) # comment out this line for no quarantining
 
     np.save("plotting/testc11s.npy", c11s)
     np.save("plotting/testsolutions.npy", solutions)
