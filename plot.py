@@ -2,10 +2,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def draw(class_periods, class_size):
-    c11s = np.load("plotting/testc11s.npy", allow_pickle=True)
+    Cs = np.load("plotting/testCs.npy", allow_pickle=True)
     solutions = np.load("plotting/testsolutions.npy", allow_pickle=True)
 
-    y = [np.reshape(solution.y, (6, 2, len(solution.t))) for solution in solutions]
+    y = [np.reshape(solution.y, (6, 3, len(solution.t))) for solution in solutions]
     t = [solution.t for solution in solutions]
 
     y = np.concatenate(y, axis=-1)
