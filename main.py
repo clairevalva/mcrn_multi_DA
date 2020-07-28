@@ -42,5 +42,5 @@ num_weeks = 1
     '''
 # Run and plot
 multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
-                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizesyp, schedule_types = stype)
+                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_types = stype)
 plot.draw(class_periods, class_size)
