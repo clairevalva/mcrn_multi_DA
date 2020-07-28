@@ -24,7 +24,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     solutions = []
 
     # Create a vector of the relevant C entries (to plot later)
-    c11s = []
+    Cs = []
 
     # Set agent model parameters
     model = agent_journal.UnivModel(S[0], 5, S[0], class_periods=class_periods, class_size=class_size)
@@ -37,37 +37,39 @@ def run(initial_infected, num_weeks, class_periods, class_size,
             if day >= 0 and day <= 4:
                 C[0, 0] = compute_contact_rate(model, num_remove)
             else:
-                C[0, 0] = 0
+                C[0, 0] = C[1, 1]
 
             # for staggered daily
             # if day == 0 or day == 2 or day == 4 :
             #     C[0, 0] = compute_contact_rate(model, num_removeA)
-            #     C[2, 2] = 0
+            #     C[2, 2] = C[1, 1]
             # elif: day == 1 or day == 3 or day == 5:
-            #     C[0, 0] = 0
+            #     C[0, 0] = C[1, 1]
             #     C[2, 2] = compute_contact_rate(model, num_removeB)
             # else:
-            #     C[0, 0] = 0
-            #     C[2, 2] = 0
+            #     C[0, 0] = C[1, 1]
+            #     C[2, 2] = C[1, 1]
 
             # for staggered weekly schedule
             # if wk % 2:
             #     if day >= 0 and day <= 4:
             #         C[0, 0] = compute_contact_rate(model, num_removeA)
-            #         C[2, 2] = 0
+            #         C[2, 2] = C[1, 1]
             #     else:
-            #         C[0, 0] = 0
-            #         C[2, 2] = 0
+            #         C[0, 0] = C[1, 1]
+            #         C[2, 2] = C[1, 1]
             # else:
             #     if day >= 0 and day <= 4:
-            #         C[0, 0] = 0
+            #         C[0, 0] = C[1, 1]
             #         C[2, 2] = compute_contact_rate(model, num_removeB)
             #     else:
-            #         C[0, 0] = 0
-            #         C[2, 2] = 0
+            #         C[0, 0] = C[1, 1]
+            #         C[2, 2] = C[1, 1]
 
-            C[0, 0] = compute_contact_rate(model, num_remove)
-            c11s.append(C[0, 0])
+            # no weekly schedule
+            # C[0, 0] = compute_contact_rate(model, num_remove)
+            
+            Cs.append(C)
 
             interval = [7*wk+day, 7*wk+day+1]
             print("Day = " + str(7*wk+day+1))
