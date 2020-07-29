@@ -44,6 +44,8 @@ initial_infected = 1 # Always starts in the largest compartment!
 num_weeks = 6
 
 # Run and plot
-#Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
-#                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size)
+Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
+                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size)
 
+savename = "multi_runs/multi_Q=" + str(Q_percent) + "_csize=" + str(class_size) + "_per=" + str(class_periods) + "_msize" + str(major_size) + "_sch=" + str(stype) + ".npy"
+print(savename)
