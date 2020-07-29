@@ -30,6 +30,9 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     
     if schedule_type == "day_stagger" or schedule_type == "week_stagger":
         old = float(S[0])
+        new = np.floor(old/2)
+        S[0] = int(new)
+        S[-1] = int(new)
         Cnew[-1,-1] = Cnew[0,0]
         
         for xx in range(n-1):
