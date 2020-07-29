@@ -8,7 +8,7 @@ if argue == True:
     students = [sys.argv[1]]
     class_periods = [sys.argv[2]]
     studentlabels = str(int(sys.argv[1]))
-    savename = "N=" + str(studentlabels) + "_per=" + str(sys.argv[2]) +".npy"
+    savename = "run_results/N=" + str(studentlabels) + "_per=" + str(sys.argv[2]) +".npy"
     
 else:
     students = [33.5*(10**3), 2000, 65*(10**3)]
@@ -19,11 +19,7 @@ else:
 class_sizes = [i*20 + 10 for i in range(5)]
 majors = [False,  100, 500]
 
-
-
-
-
-contacts = np.zeros((len(students),len(class_periods), len(class_sizes), len(majors)))
+contacts = np.zeros((len(students), len(class_periods), len(class_sizes), len(majors)))
 for N in range(len(students)):
     for pers in range(len(class_periods)):
         for szs in range(len(class_sizes)):
@@ -38,11 +34,7 @@ for N in range(len(students)):
                     model.step()
                     
                 C = agent_journal.contactnumbers(model, returnarr = False)[-1]
-                contacts[N,pers,szs,maj] = C
-
-
-# In[ ]:
-
+                contacts[N, pers, szs, maj] = C
 
 np.save(savename, C)
 
