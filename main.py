@@ -13,9 +13,10 @@ class_size = 10
 # http ://www.apple.com/covid19/mobility we could use this mobility data to get an idea for C[1,1]
 
 # Compartmental model parameters
+C22 = np.mean(np.load("real_data/c_values_beta=1.npy")[:,3])
 uni_city_coupling = float(1.0)
-C = np.array([[1, uni_city_coupling],
-              [uni_city_coupling, 1]]) # Unscaled contact matrix
+C = np.array([[1, uni_city_coupling * C22],
+              [uni_city_coupling* C22, C22]]) # Unscaled contact matrix
 beta = 1 #0.69 # Infection rate (chosen from paper)
 gamma = 0.07 # Inverse of latent time to infection (chosen from paper)
 lam = 0.1 # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
@@ -43,6 +44,6 @@ initial_infected = 1 # Always starts in the largest compartment!
 num_weeks = 6
 
 # Run and plot
-Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
-                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size)
+#Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
+#                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size)
 

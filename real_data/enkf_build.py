@@ -124,9 +124,9 @@ my_EnKF(ensemble_members)
 
 # Plot
 fig, axs = plt.subplots(4, 1, True)
-for m in range(4):
+for m in range(1):
     # axs[m].plot(dt * np.arange(K + 1), xx[:, m], 'k', label="Truth")
-    axs[m].plot(dt * np.arange(K + 1), xxhat[:, m], 'b', label="Estimate")
+    axs[m].plot(dt * np.arange(K + 1), xxhat[:, 3], 'b', label="Estimate")
     if m < p:
         axs[m].plot(dtObs * np.arange(1, KObs + 2), yy[:, m], 'g*')
     axs[m].set_ylabel("Dim %d" % m)
@@ -134,4 +134,4 @@ axs[0].legend()
 plt.xlabel("Time (t)")
 plt.savefig("test.png")
 
-np.save("c_values_beta=1.npy", xxhat)
+#np.save("c_values_beta=1.npy", xxhat)
