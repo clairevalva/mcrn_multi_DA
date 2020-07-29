@@ -47,5 +47,10 @@ num_weeks = 6
 Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
                      n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size)
 
-savename = "multi_runs/multi_Q=" + str(Q_percent) + "_csize=" + str(class_size) + "_per=" + str(class_periods) + "_msize" + str(major_size) + "_sch=" + str(stype) + ".npy"
-print(savename)
+savenamesol = "multi_runs/multi_Q=" + str(Q_percent) + "_csize=" + str(class_size) + "_per=" + str(class_periods) + "_msize" + str(major_size) + "_sch=" + str(stype) + ".npy"
+
+savenameC = "multi_runs/C_multi_Q=" + str(Q_percent) + "_csize=" + str(class_size) + "_per=" + str(class_periods) + "_msize" + str(major_size) + "_sch=" + str(stype) + ".npy"
+
+np.save(savenameC, Cs)
+np.save(savenamesol, solutions)
+
