@@ -20,7 +20,7 @@ def fetch():
     date_nums = [x for x in range(len(date_list))]
 
     # Import the Larimer County confirmed/probable Cases
-    larimer_cases = pd.read_csv('LC-COVID-casesdata.csv', sep=',', parse_dates=['ReportedDate'])
+    larimer_cases = pd.read_csv('raw_data/LC-COVID-casesdata.csv', sep=',', parse_dates=['ReportedDate'])
 
     # Pull out the Fort Collins cases
     fc_cases = pd.DataFrame({'new_cases':[0]*len(date_list)}, index=date_list)

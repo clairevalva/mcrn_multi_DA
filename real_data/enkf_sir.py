@@ -16,15 +16,13 @@ dkObs = 100  # number of steps between observations
 dtObs = dkObs * dt  # time between observations
 KObs = 134  # total number of observations
 K = dkObs * (KObs + 1)  # total number of time steps
-ensemble_members = 50
+ensemble_members = 100
 
 R_chol = .5 * np.eye(p)
 R = R_chol @ R_chol.T
 
 # Init
-# xx = np.zeros((K + 1, M)) # synthetic truth
 yy = get_case_data.fetch() # get observation data
-# xx[0] = mu0 + P0_chol @ npr.randn(M)
 xxhat = np.zeros((K + 1, M))
 
 
@@ -123,15 +121,15 @@ def my_EnKF(N):
 my_EnKF(ensemble_members)
 
 # Plot
-fig, axs = plt.subplots(4, 1, True)
-for m in range(1):
-    # axs[m].plot(dt * np.arange(K + 1), xx[:, m], 'k', label="Truth")
-    axs[m].plot(dt * np.arange(K + 1), xxhat[:, 3], 'b', label="Estimate")
-    if m < p:
-        axs[m].plot(dtObs * np.arange(1, KObs + 2), yy[:, m], 'g*')
-    axs[m].set_ylabel("Dim %d" % m)
+plt.clf()
+plt.figure(figsize=(16, 9), dpi=1200)
+fig, axs = plt.subplots(2, 1, True)
+axs[0].plot(dt * np.arange(K + 1), xxhat[:, 1] + xxhat[:, 2], 'b', label="Estimate of I+R")
+axs[0].plot(dtObs * np.arange(1, KObs + 2), yy[:], 'g*', label="Observations")
+axs[1].plot(dt * np.arange(K + 1), xxhat[:, 3], 'b', label="Estimate of C")
 axs[0].legend()
+axs[1].legend()
 plt.xlabel("Time (t)")
-plt.savefig("test.png")
+plt.savefig("da-C.svg")
 
-#np.save("c_values_beta=1.npy", xxhat)
+np.save("c_values_beta=1.npy", xxhat)

@@ -24,7 +24,7 @@ date_list = pd.date_range(start=start_date, end=end_date) # Chosen for a specifi
 date_nums = [x for x in range(len(date_list))]
 
 # Import the Larimer County confirmed/probable Cases
-larimer_cases = pd.read_csv('LC-COVID-casesdata.csv', sep=',', parse_dates=['ReportedDate'])
+larimer_cases = pd.read_csv('raw_data/LC-COVID-casesdata.csv', sep=',', parse_dates=['ReportedDate'])
 
 # Pull out the Fort Collins cases
 fc_cases = pd.DataFrame({'new_cases':[0]*len(date_list)}, index=date_list)
@@ -75,7 +75,7 @@ finish = datetime.strptime(end_date, date_format)
 delta_days = finish - begin
 total_days = delta_days.total_seconds()/86400 #convert from seconds to days.
 
-apple_mobility = pd.read_csv('applemobilitytrends-2020-07-25.csv', sep=',')
+apple_mobility = pd.read_csv('raw_data/applemobilitytrends-2020-07-25.csv', sep=',')
 #print(apple_mobility.at[2591, 'region']) #verify larimer county
 date_list = pd.date_range(start=start_date, end=end_date)
 larimer_mobility = pd.DataFrame({'mobility_percentage': [0]*len(date_list)}, index=date_list)
