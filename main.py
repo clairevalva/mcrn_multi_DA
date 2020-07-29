@@ -14,11 +14,11 @@ class_size = int(sys.argv[2])
 # http ://www.apple.com/covid19/mobility we could use this mobility data to get an idea for C[1,1]
 
 # Compartmental model parameters
+beta = .3 #0.69 # Infection rate (chosen from paper)
 C22 = np.mean(np.load("real_data/c_values_beta=1.npy")[:,3])
 uni_city_coupling = float(sys.argv[3])
-C = np.array([[1, uni_city_coupling * C22],
-              [uni_city_coupling* C22, C22]]) # Unscaled contact matrix
-beta = 1 #0.69 # Infection rate (chosen from paper)
+C = np.array([[1, (1 / beta) * uni_city_coupling * C22],
+              [(1 / beta) * uni_city_coupling * C22, (1 / beta) * C22]]) # Unscaled contact matrix
 gamma = 0.07 # Inverse of latent time to infection (chosen from paper)
 lam = 0.1 # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
 kappa = 0.002 # Death rate (found from (US Deaths/US Infections))
