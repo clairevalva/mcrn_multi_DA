@@ -17,7 +17,7 @@ else:
     savename = "test_C3.npy"
 
 class_sizes = [i*10 + 10 for i in range(10)]
-majors = [False,  100, 500]
+majors = [False,  100, 250, 500]
 
 contacts = np.zeros((len(students), len(class_periods), len(class_sizes), len(majors)))
 for N in range(len(students)):
