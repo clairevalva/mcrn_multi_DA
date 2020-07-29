@@ -33,7 +33,7 @@ stype = str(sys.argv[5])
 
 # Initial conditions
 # CSU, Fort Collins, Larimer County population sizes
-uni_size = int(33.5*(10**3)) # 33.5k
+uni_size = 1000#int(33.5*(10**3)) # 33.5k
 city_size = int(168*(10**3)) # 168k
 county_size = int(357000)  # not used yet
 compartment_sizes = [uni_size, city_size]
