@@ -16,7 +16,7 @@ else:
     class_periods = [i for i in range(3,6)]
     savename = "test_C3.npy"
 
-class_sizes = [i*20 + 10 for i in range(5)]
+class_sizes = [i*10 + 10 for i in range(5)]
 majors = [False,  100, 500]
 
 contacts = np.zeros((len(students), len(class_periods), len(class_sizes), len(majors)))
@@ -26,15 +26,16 @@ for N in range(len(students)):
             for maj in range(len(majors)):
                 
                 print(students[N])
-                print("repeat")
+                
 
                 model = agent_journal.UnivModel(int(students[N]), 5, int(np.floor(int(students[N]) / 2)),
                                                 class_periods[pers], class_sizes[szs], majors[maj])
-                for i in range(pers):
+                for i in range(int(class_periods[pers])):
                     model.step()
                     
                 C = agent_journal.contactnumbers(model, returnarr = False)[-1]
+                print(C)
                 contacts[N, pers, szs, maj] = C
 
-np.save(savename, C)
+np.save(savename, contacts)
 
