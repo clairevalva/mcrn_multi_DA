@@ -144,7 +144,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
             dead_individuals = shaped[0, -1, 0, -1]
             num_removeA = int(quarantined_individuals+dead_individuals) # comment out this line for no quarantining
             
-            if schedule_type == "day_stagger" or schedule_type == "week_scatter":
+            if schedule_type == "day_stagger" or schedule_type == "week_stagger":
                 # TO DO: change so no repeat variables/clarity? 
                 # third index is the comparment
                 quarantined_individuals = shaped[0, 2, -1, -1]
