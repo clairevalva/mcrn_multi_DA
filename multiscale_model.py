@@ -36,6 +36,8 @@ def run(initial_infected, num_weeks, class_periods, class_size,
             Cnew[xx,n-1] = C[xx,0] 
             Cnew[-1] = Cnew[:,-1]
             
+        Cnew[0,n-1] = Cnew[0,1]
+        Cnew[n-1, 0] = Cnew[0,1]    
         print("new contact matrix: " + str(Cnew))    
         
         
