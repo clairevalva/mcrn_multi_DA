@@ -4,31 +4,32 @@ Build our results from here
 import multiscale_model
 import plot
 import numpy as np
+import sys
 
 
 # Agent model information
-class_periods = 3
-class_size = 10
+class_periods = int(sys.argv[1])
+class_size = int(sys.argv[2])
 
 # http ://www.apple.com/covid19/mobility we could use this mobility data to get an idea for C[1,1]
 
 # Compartmental model parameters
 C22 = np.mean(np.load("real_data/c_values_beta=1.npy")[:,3])
-uni_city_coupling = float(1.0)
+uni_city_coupling = float(sys.argv[3])
 C = np.array([[1, uni_city_coupling * C22],
               [uni_city_coupling* C22, C22]]) # Unscaled contact matrix
 beta = 1 #0.69 # Infection rate (chosen from paper)
 gamma = 0.07 # Inverse of latent time to infection (chosen from paper)
 lam = 0.1 # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
 kappa = 0.002 # Death rate (found from (US Deaths/US Infections))
-Q_percent = 1/5 # Quarantine percentage, set to 0 for no quarantining
+Q_percent = float(sys.argv[4]) # Quarantine percentage, set to 0 for no quarantining
 major_size = False # false if no major separation, true otherwise
 
 ''' 
     schedule_types can be "none" (no daily schedule),
     "day_stagger", or "week_stagger"
 '''
-stype = "week_stagger"  
+stype = str(sys.argv[5]) 
 
 # Initial conditions
 # CSU, Fort Collins, Larimer County population sizes
@@ -41,7 +42,7 @@ initial_infected = 1 # Always starts in the largest compartment!
 
 
 # Run information
-num_weeks = 6
+num_weeks = int(sys.argv[6])
 
 # Run and plot
 Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
