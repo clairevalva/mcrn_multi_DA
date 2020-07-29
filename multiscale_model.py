@@ -28,7 +28,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     Cnew[:n-1,:n-1] = C
     
     
-    if schedule_type == "day_stagger" or schedule_type == "week_scatter":
+    if schedule_type == "day_stagger" or schedule_type == "week_stagger":
         old = float(S[0])
         Cnew[-1,-1] = Cnew[0,0]
         
