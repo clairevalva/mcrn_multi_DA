@@ -2,12 +2,12 @@ import numpy.random as npr
 from dapper import *
 import get_case_data
 
-M = 5  # ndim
+M = 7  # ndim
 p = 1  # ndim obs
 Q_chol = np.zeros((M, M))
 Q = Q_chol @ Q_chol.T
-mu0 = np.array([168000, 0, 1, 0, 2]) # initial conditions SEIR and C
-P0_chol = np.eye(5)
+mu0 = np.array([168000, 0, 0, 1, 0, 0, 2]) # initial conditions SEQIRD and C
+P0_chol = np.eye(M)
 P0 = P0_chol @ P0_chol.T
 
 # Assimilation parameters
@@ -16,7 +16,7 @@ dkObs = 100  # number of steps between observations
 dtObs = dkObs * dt  # time between observations
 KObs = 134  # total number of observations
 K = dkObs * (KObs + 1)  # total number of time steps
-ensemble_members = 100
+ensemble_members = 10
 
 R_chol = .5 * np.eye(p)
 R = R_chol @ R_chol.T
@@ -48,22 +48,27 @@ def estimate_cross_cov(Ex, Ey):
     return CC
 
 def dxdt(x):
+    Q_percent = .5
     gamma = 0.07
     beta = 1  # Infection rate (chosen from paper)
     lam = 0.1  # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
     kappa = 0.002  # Death rate (chosen from paper)
     S = x[0]
     E = x[1]
-    I = x[2]
-    R = x[3]
-    C = x[4]
-    N = S + E + I + R
-    d = np.zeros(5)
+    Q = x[2]
+    I = x[3]
+    R = x[4]
+    D = x[5]
+    C = x[6]
+    N = S + E + Q + I + R + D
+    d = np.zeros(7)
     d[0] = -beta * C * S * I / N
     d[1] = beta * C * S * I / N - gamma * E
-    d[2] = gamma * E - (lam + kappa) * I
-    d[3] = (lam + kappa) * I
-    d[4] = 0
+    d[2] = gamma * Q_percent * E - (lam + kappa) * Q
+    d[3] = gamma * (1-Q_percent) * E - (lam + kappa) * I
+    d[4] = lam * (I + Q)
+    d[5] = kappa * (I + Q)
+    d[6] = 0
     return d
 
 def Dyn(E, t0, dt):
@@ -82,7 +87,7 @@ def Dyn(E, t0, dt):
 
 def Obs(E, t):
     # Return I + R
-    arr = np.reshape(E[2] + E[3], (ensemble_members, 1))
+    arr = np.reshape(E[3] + E[4], (ensemble_members, 1))
     return np.transpose(arr)
 
 def divide_1st_by_2nd(B, A):
@@ -117,12 +122,12 @@ my_EnKF(ensemble_members)
 plt.clf()
 plt.figure(figsize=(16, 9), dpi=1200)
 fig, axs = plt.subplots(2, 1, True)
-axs[0].plot(dt * np.arange(K + 1), xxhat[:, 2] + xxhat[:, 3], 'b', label="Estimate of I+R")
+axs[0].plot(dt * np.arange(K + 1), xxhat[:, 3] + xxhat[:, 4], 'b', label="Estimate of I+R")
 axs[0].plot(dtObs * np.arange(1, KObs + 2), yy[:], 'g*', label="Observations")
-axs[1].plot(dt * np.arange(K + 1), xxhat[:, 4], 'b', label="Estimate of C")
+axs[1].plot(dt * np.arange(K + 1), xxhat[:, 6], 'b', label="Estimate of C")
 axs[0].legend()
 axs[1].legend()
 plt.xlabel("Time (t)")
-plt.savefig("SEIRC_assimilation.svg")
+plt.savefig("SEQIRDC_assimilation.png")
 
-np.save("SEIRC_beta=1.npy", xxhat)
+np.save("SEQIRDC_beta=1.npy", xxhat)
