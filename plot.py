@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def draw(class_periods, class_size):
+def draw(class_periods, class_size, Cs, solutions):
     Cs = np.load("plotting/testCs.npy", allow_pickle=True)
     solutions = np.load("plotting/testsolutions.npy", allow_pickle=True)
 
