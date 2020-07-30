@@ -61,7 +61,6 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     model = agent_journal.UnivModel(S[0], 5, S[0], class_periods=class_periods, class_size=class_size, majors = majors)
     num_removeA = 0
     num_removeB = 0
-    print("Num_weeks = " + str(num_weeks))
 
     for wk in range(num_weeks):
         for day in range(7):
