@@ -1,7 +1,16 @@
-python main.py 3 5 1 .5 none 6
-python main.py 3 15 1 .5 none 6
-python main.py 3 30 1 .5 none 6
+# python main.py periods class_size coupling quarantine_percent stagger_type num_weeks
+
+# for figure 11
+python main.py 1 10 .01 .5 week_stagger 25
+python main.py 1 10 .1  .5 week_stagger 25
+python main.py 1 10  1  .5 week_stagger 25
+
+python main.py 3 10 .01 .5 none 25
+python main.py 3 10 .1  .5 none 25
+python main.py 3 10  1  .5 none 25
+
+
 git pull
 git add -A
-git commit -m "eli no stagger data"
+git commit -m "eli data"
 git push
