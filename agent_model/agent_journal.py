@@ -50,26 +50,39 @@ class UnivModel(Model):
         # majors is false if not implemented
         #otherwise majors should be the number of persons per major
         
-        self.num_agents = N
-        self.grid = MultiGrid(width, height, False)
-        self.schedule = RandomActivation(self)
-        self.contactjournal = np.zeros((N,N), dtype=int)
-        self.contactrep = np.zeros((N,N), dtype=int) # type 2 contact
-        self.class_periods = class_periods
-        self.class_size = class_size
-        self.majorsize = majors
-        
-        self.shuffled = np.array(random.shuffle(np.array(range(N))))
-        
         if not majors:
+
+            self.num_agents = N
+            self.grid = MultiGrid(5, N, False)
+            self.schedule = RandomActivation(self)
+            self.contactjournal = np.zeros((N,N), dtype=int)
+            self.contactrep = np.zeros((N,N), dtype=int) # type 2 contact
+            self.class_periods = class_periods
+            self.class_size = class_size
+            self.majorsize = majors
+            
+            self.shuffled = np.array(random.shuffle(np.array(range(N))))
+
             classdet = class_assign_funcs.class_assign(N, class_periods, class_size)
             self.classes = classdet[0]
         else:
-            classdet = class_assign_funcs.class_assign_majors(N, class_periods, class_size)
-            self.classes = class_assign_funcs.reshape_formod(classdet[0])
+
+            self.num_agents = 500
+            self.grid = MultiGrid(5, 500, False)
+            self.schedule = RandomActivation(self)
+            self.contactjournal = np.zeros((500,500), dtype=int)
+            self.contactrep = np.zeros((500,500), dtype=int) # type 2 contact
+            self.class_periods = class_periods
+            self.class_size = class_size
+            self.majorsize = majors
+        
+            self.shuffled = np.array(random.shuffle(np.array(range(500))))
+
+            classdet = class_assign_funcs.class_assign_majors(500, class_periods, class_size)
+            self.classes = classdet[0]
             
         
-        numberclasses = classdet[1]
+        #numberclasses = classdet[1]
         #print("the number of classes is: ", numberclasses)
         
         self.tick = 0
