@@ -1,13 +1,13 @@
 # python main.py periods class_size coupling quarantine_percent stagger_type num_weeks
 
 # for figure 11
-python main.py 1 10 .01 .5 week_stagger 25
-python main.py 1 10 .1  .5 week_stagger 25
-python main.py 1 10  1  .5 week_stagger 25
+python main.py 1 10 .01 .5 week_stagger 15
+python main.py 1 10 .1  .5 week_stagger 15
+python main.py 1 10  1  .5 week_stagger 15
 
-python main.py 3 10 .01 .5 none 25
-python main.py 3 10 .1  .5 none 25
-python main.py 3 10  1  .5 none 25
+python main.py 3 10 .01 .5 none 15
+python main.py 3 10 .1  .5 none 15
+python main.py 3 10  1  .5 none 15
 
 
 git pull
