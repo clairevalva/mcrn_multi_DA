@@ -1,6 +1,10 @@
 # last edited on July 20, 2020 by Claire Valva
 # file which just has the presets that I think look the nicest
 # to be updated as time progresses
+# some_file.py
+import sys
+# insert at 1, 0 is the script path (or '' in REPL)
+sys.path.insert(1, 'plotting/')
 
 # from pre2016
 parula = [[0.2081, 0.1663, 0.5292], [0.2116238095, 0.1897809524, 0.5776761905], 
