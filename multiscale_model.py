@@ -15,6 +15,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     n += 1
     compartment_sizes.append(0)
     
+    remove_scale = int(33500 / 500)
     
     S = [33500, 1.673e+05-33500, 0]
     E = [0, 7.5e+01, 0]
@@ -141,14 +142,15 @@ def run(initial_infected, num_weeks, class_periods, class_size,
             ## New Agent Model w/ certain number removed
             quarantined_individuals = shaped[0, 2, 0, -1]
             dead_individuals = shaped[0, -1, 0, -1]
-            num_removeA = int(quarantined_individuals+dead_individuals) # comment out this line for no quarantining
+            num_removeA = int(quarantined_individuals+dead_individuals) // remove_scale # comment out this line for no quarantining
+            
             
             if schedule_type == "day_stagger" or schedule_type == "week_stagger":
                 # TO DO: change so no repeat variables/clarity? 
                 # third index is the comparment
                 quarantined_individuals = shaped[0, 2, -1, -1]
                 dead_individuals = shaped[0, -1, -1, -1]
-                num_removeB = int(quarantined_individuals+dead_individuals)
+                num_removeB = int(quarantined_individuals+dead_individuals) // remove_scale
             else:
                 num_removeB = 0
             
