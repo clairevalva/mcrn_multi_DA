@@ -16,17 +16,15 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     compartment_sizes.append(0)
     
     
-    S = compartment_sizes
-    E = [0 for compartment in compartment_sizes]
-    Q = [0 for compartment in compartment_sizes]
-    I = [0 for compartment in compartment_sizes]
-    I[1] = initial_infected # put initial infected population in the city level
-    R = [0 for compartment in compartment_sizes]
-    D = [0 for compartment in compartment_sizes]
+    S = [33500, 1.673e+05-33500, 0]
+    E = [0, 7.5e+01, 0]
+    Q = [0, Q_percent*4.906e+01, 0]
+    I = [0, (1-Q_percent)*4.906e+01, 0]
+    R = [0, 4.957e02, 0]
+    D = [0, 1.165e-01, 0]
     
     Cnew = np.zeros((n,n))
     Cnew[:n-1,:n-1] = C
-    
     
     if schedule_type == "day_stagger" or schedule_type == "week_stagger":
         old = float(S[0])
@@ -43,8 +41,6 @@ def run(initial_infected, num_weeks, class_periods, class_size,
         Cnew[n-1, 0] = Cnew[0,1]    
         print("new contact matrix: " + str(Cnew))    
         
-        
-     
     # use new contact matrix
     C = Cnew
 
@@ -65,6 +61,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     model = agent_journal.UnivModel(S[0], 5, S[0], class_periods=class_periods, class_size=class_size, majors = majors)
     num_removeA = 0
     num_removeB = 0
+    print("Num_weeks = " + str(num_weeks))
 
     for wk in range(num_weeks):
         for day in range(7):
