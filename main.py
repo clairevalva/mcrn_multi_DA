@@ -25,6 +25,8 @@ kappa = 0.002 # Death rate (found from (US Deaths/US Infections))
 Q_percent = float(sys.argv[4]) # Quarantine percentage, set to 0 for no quarantining
 major_size = 500 # false if no major separation, size of major otherwise
 
+agent_ensN = 10 # size of agent model ensemble
+
 ''' 
     schedule_types can be "none" (no daily schedule),
     "day_stagger", or "week_stagger"
@@ -33,7 +35,7 @@ stype = str(sys.argv[5])
 
 # Initial conditions
 # CSU, Fort Collins, Larimer County population sizes
-uni_size = 0 #int(33.5*(10**3)) # 33.5k
+uni_size = int(33.5*(10**3)) # 33.5k
 city_size = int(168*(10**3)) # 168k
 county_size = int(357000)  # not used yet
 compartment_sizes = [uni_size, city_size - uni_size]
@@ -45,8 +47,8 @@ initial_infected = 1 # Always starts in the largest compartment!
 num_weeks = int(sys.argv[6])
 
 # Run and plot
-Cs, solutions = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
-                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size)
+Cs, solutions, variances = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
+                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size, agent_ens = agent_ensN)
 
 savenamesol = "multi_runs/multi_Q=" + str(Q_percent) + "_csize=" + str(class_size) + "_per=" + str(class_periods) + "_msize" + str(major_size) + "_sch=" + str(stype) + "_coupling=" + str(uni_city_coupling) + ".npy"
 #

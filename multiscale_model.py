@@ -5,7 +5,7 @@ from agent_model import agent_journal, quar_agents
 
 def run(initial_infected, num_weeks, class_periods, class_size,
         n, beta, gamma, lam, kappa, C, Q_percent, compartment_sizes,
-       schedule_type = "none", majors = False):
+       schedule_type = "none", majors = False, agent_ens = 1):
     
     ''' 
     schedule_types can be "none" (no daily schedule),
@@ -29,6 +29,8 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     I[1] = initial_infected # put initial infected population in the city level
     R = [0 for compartment in compartment_sizes]
     D = [0 for compartment in compartment_sizes]
+    
+    
     
     
     # uncomment and replace if are going to hard prescribe these values
@@ -72,6 +74,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
 
     # Create a vector of the relevant C entries (to plot later)
     Cs = []
+    variances = []
 
     # Set agent model parameters
     model = agent_journal.UnivModel(S[0], 5, S[0], class_periods=class_periods, class_size=class_size, majors = majors)
@@ -85,18 +88,21 @@ def run(initial_infected, num_weeks, class_periods, class_size,
             if schedule_type == "none":
                 
                 if day >= 0 and day <= 4:
-                    C[0, 0] = compute_contact_rate(model, num_removeA)
+                    c_rates = compute_contact_rate(model, num_removeA, agent_ens)
+                    C[0, 0] = c_rates[0]
                 else:
                     C[0, 0] = C[1, 1]
             
             # for staggered daily
             elif schedule_type == "day_stagger":
                 if day == 0 or day == 2 or day == 4 :
-                    C[0, 0] = compute_contact_rate(model, num_removeA)
+                    c_rates = compute_contact_rate(model, num_removeA, agent_ens)
+                    C[0, 0] = c_rates[0]
                     C[-1, -1] = C[1, 1]
                 elif day == 1 or day == 3 or day == 5:
                     C[0, 0] = C[1, 1]
-                    C[-1, -1] = compute_contact_rate(model, num_removeB)
+                    c_rates = compute_contact_rate(model, num_removeB, agent_ens)
+                    C[-1, -1] = c_rates[0]
                     
                 else:
                     C[0, 0] = C[1, 1]
@@ -107,7 +113,8 @@ def run(initial_infected, num_weeks, class_periods, class_size,
 
                 if wk % 2:
                     if day >= 0 and day <= 4:
-                        C[0, 0] = compute_contact_rate(model, num_removeA)
+                        c_rates = compute_contact_rate(model, num_removeA, agent_ens)
+                        C[0, 0] = c_rates[0]
                         C[-1, -1] = C[1, 1]
                     else:
                         C[0, 0] = C[1, 1]
@@ -116,7 +123,8 @@ def run(initial_infected, num_weeks, class_periods, class_size,
                     if day >= 0 and day <= 4:
                         C[0, 0] = C[1, 1]
                         
-                        C[-1, -1] = compute_contact_rate(model, num_removeB)
+                        c_rates = compute_contact_rate(model, num_removeB, agent_ens)
+                        C[-1, -1] = c_rates[0]
                         
                     else:
                         C[0, 0] = C[1, 1]
@@ -126,11 +134,13 @@ def run(initial_infected, num_weeks, class_periods, class_size,
                 print("there is no weekly schedule")
 
                 # no weekly schedule
-                C[0, 0] = compute_contact_rate(model, num_removeA)
+                c_rates = compute_contact_rate(model, num_removeA, agent_ens)
+                C[0, 0] = c_rates[0]
                 
             
             
             Cs.append(np.copy(C))
+            variances.append(np.copy(c_rates[1]))
 
             interval = [7*wk+day, 7*wk+day+1]
             print("Day = " + str(7*wk+day+1))
@@ -169,11 +179,35 @@ def run(initial_infected, num_weeks, class_periods, class_size,
             else:
                 num_removeB = 0
             
-    return Cs, solutions
+    return Cs, solutions, variances
 
 
-def compute_contact_rate(model, num_removed):
+def compute_contact_rate(model, num_removed, agent_ens = 1):
+    ''' returns the contact rate and the variance for the size of ensemble, if agent_ens = 1,
+    then returns 0 for the variance, agent_ens should be prescribed as an integer
+    '''
+    
+    if agent_ens == 1:
 
+        return [contact_rate_iterate(model, num_removed), 0]
+    
+    elif np.issubdtype(type(agent_ens), np.integer):
+    
+
+        contact_list = np.zeros(int(agent_ens))
+        for xx in range(int(agent_ens)):
+            contact_list[xx] = contact_rate_iterate(model, num_removed)
+            
+        var_N = np.var(contact_list)
+        mean_N = np.mean(contact_list)
+        
+        return [mean_N, var_N]
+    
+    else:
+        print("agent_ens was not given an integer")
+                  
+                                
+def contact_rate_iterate(model, num_removed):
     removels = quar_agents.remove_ls(num_removed, model.tick, model.num_agents)
 
     model = agent_journal.UnivModel(model.num_agents, 5, model.num_agents, class_periods=model.class_periods, class_size=model.class_size, majors = model.majorsize)
@@ -183,5 +217,8 @@ def compute_contact_rate(model, num_removed):
         model.step()
 
     contacts = agent_journal.contactnumbers(model, returnarr=False)[-1]
-
+    
     return contacts
+
+        
+                             
