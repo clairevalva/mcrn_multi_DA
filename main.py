@@ -1,28 +1,28 @@
-'''
-Build our results from here
-'''
 import multiscale_model
 import plot
 import numpy as np
 import sys
 
-
 # Agent model information
 class_periods = int(sys.argv[1])
 class_size = int(sys.argv[2])
 
-# http ://www.apple.com/covid19/mobility we could use this mobility data to get an idea for C[1,1]
-
 # Compartmental model parameters
-beta = .3 #0.69 # Infection rate (chosen from paper)
-C22 = np.mean(np.load("real_data/c_values_beta=1.npy")[:,3])
-uni_city_coupling = float(sys.argv[3])
-C = np.array([[1, (1 / beta) * uni_city_coupling * C22],
-              [(1 / beta) * uni_city_coupling * C22, (1 / beta) * C22]]) # Unscaled contact matrix
+beta = .3 # Infection rate (chosen somewhat arbitrarily)
 gamma = 0.07 # Inverse of latent time to infection (chosen from paper)
 lam = 0.1 # Recovery rate (chosen from paper) (choose between 0.07 to 0.5)
 kappa = 0.002 # Death rate (found from (US Deaths/US Infections))
 Q_percent = float(sys.argv[4]) # Quarantine percentage, set to 0 for no quarantining
+
+# Assimilated contact values
+C22 = np.mean(np.load("real_data/assimilated_data/SIRC_beta=1_city.npy")[:, 3])
+C33 = np.mean(np.load("real_data/assimilated_data/SIRC_beta=1_county.npy")[:, 3])
+
+# Build C matrix
+uni_city_coupling = float(sys.argv[3])
+C = np.array([[1, (1 / beta) * uni_city_coupling * C22],
+              [(1 / beta) * uni_city_coupling * C22, (1 / beta) * C22]]) # Unscaled contact matrix
+
 major_size = 500 # false if no major separation, size of major otherwise
 
 agent_ensN = 10 # size of agent model ensemble
@@ -58,4 +58,3 @@ savenameC = "multi_runs/C_multi_Q=" + str(Q_percent) + "_csize=" + str(class_siz
 # savenameC = "multi_runs/no_school.npy"
 np.save(savenameC, Cs)
 np.save(savenamesol, solutions)
-
