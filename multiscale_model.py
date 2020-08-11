@@ -15,14 +15,29 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     n += 1
     compartment_sizes.append(0)
     
-    remove_scale = int(33500 / 500)
+    if not majors:
+        remove_scale = 1
+    else:
+        remove_scale = int(33500 / majors)
+        
     
-    S = [33500, 1.673e+05-33500, 0]
-    E = [0, 7.5e+01, 0]
-    Q = [0, Q_percent*4.906e+01, 0]
-    I = [0, (1-Q_percent)*4.906e+01, 0]
-    R = [0, 4.957e02, 0]
-    D = [0, 1.165e-01, 0]
+    # for generic/ unmatched to the data
+    S = compartment_sizes
+    E = [0 for compartment in compartment_sizes]
+    Q = [0 for compartment in compartment_sizes]
+    I = [0 for compartment in compartment_sizes]
+    I[1] = initial_infected # put initial infected population in the city level
+    R = [0 for compartment in compartment_sizes]
+    D = [0 for compartment in compartment_sizes]
+    
+    
+    # uncomment and replace if are going to hard prescribe these values
+    # S = [33500, 1.673e+05-33500, 0]
+    # E = [0, 7.5e+01, 0]
+    # Q = [0, Q_percent*4.906e+01, 0]
+    # I = [0, (1-Q_percent)*4.906e+01, 0]
+    # R = [0, 4.957e02, 0]
+    # D = [0, 1.165e-01, 0]
     
     Cnew = np.zeros((n,n))
     Cnew[:n-1,:n-1] = C
