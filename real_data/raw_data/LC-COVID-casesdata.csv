@@ -1137,3 +1137,409 @@ CaseCount,ReportedDate,Sex,Age,City,Type
 1136,07/22/2020,Female,45,Loveland,Confirmed
 1137,07/22/2020,Male,30,Loveland,Confirmed
 1138,07/21/2020,Female,36,Fort Collins,Confirmed
+1139,07/18/2020,Female,30,Loveland,Confirmed
+1140,07/22/2020,Unknown,28,Fort Collins,Confirmed
+1141,07/22/2020,Male,16,Wellington,Confirmed
+1142,07/22/2020,Female,34,Loveland,Confirmed
+1143,07/22/2020,Female,19,Loveland,Confirmed
+1144,07/22/2020,Male,28,Fort Collins,Confirmed
+1145,07/22/2020,Male,43,Wellington,Confirmed
+1146,07/22/2020,Female,21,Fort Collins,Confirmed
+1147,07/22/2020,Male,39,Loveland,Confirmed
+1148,07/22/2020,Female,40,Loveland,Confirmed
+1149,07/22/2020,Male,18,Fort Collins,Confirmed
+1150,07/22/2020,Female,20,Fort Collins,Confirmed
+1151,07/22/2020,Male,6,Loveland,Confirmed
+1152,07/22/2020,Male,4,Loveland,Confirmed
+1153,07/22/2020,Female,25,Loveland,Confirmed
+1154,07/22/2020,Female,1,Loveland,Confirmed
+1155,07/22/2020,Female,73,Fort Collins,Confirmed
+1156,07/22/2020,Female,3,Loveland,Confirmed
+1157,07/22/2020,Male,60,Fort Collins,Confirmed
+1158,07/22/2020,Male,77,Fort Collins,Confirmed
+1159,07/22/2020,Female,1,Wellington,Confirmed
+1160,07/22/2020,Male,57,Fort Collins,Confirmed
+1161,07/22/2020,Female,47,Fort Collins,Confirmed
+1162,07/23/2020,Female,20,Windsor,Confirmed
+1163,07/23/2020,Female,90,Loveland,Confirmed
+1164,07/23/2020,Female,82,Loveland,Confirmed
+1165,07/23/2020,Female,88,Loveland,Confirmed
+1166,07/23/2020,Female,85,Loveland,Confirmed
+1167,07/23/2020,Male,88,Loveland,Confirmed
+1168,07/23/2020,Male,15,Berthoud,Confirmed
+1169,07/23/2020,Female,28,Wellington,Confirmed
+1170,07/23/2020,Male,27,Loveland,Confirmed
+1171,07/23/2020,Female,37,Fort Collins,Confirmed
+1172,07/23/2020,Male,37,Berthoud,Confirmed
+1173,07/23/2020,Male,1,Loveland,Confirmed
+1174,07/23/2020,Female,20,Fort Collins,Confirmed
+1175,07/23/2020,Female,20,Fort Collins,Confirmed
+1176,07/22/2020,Female,30,Loveland,Confirmed
+1177,07/22/2020,Male,38,Loveland,Confirmed
+1178,07/18/2020,Female,23,Fort Collins,Confirmed
+1179,07/04/2020,Male,43,Fort Collins,Confirmed
+1180,07/19/2020,Male,4,Fort Collins,Confirmed
+1181,07/18/2020,Female,22,Fort Collins,Confirmed
+1182,07/23/2020,Male,49,Fort Collins,Confirmed
+1183,07/23/2020,Male,20,Fort Collins,Confirmed
+1184,07/24/2020,Female,30,Fort Collins,Confirmed
+1185,07/24/2020,Male,22,Fort Collins,Confirmed
+1186,07/24/2020,Female,31,Wellington,Confirmed
+1187,07/24/2020,Male,21,Fort Collins,Confirmed
+1188,07/24/2020,Male,20,Fort Collins,Confirmed
+1189,07/23/2020,Female,37,Berthoud,Confirmed
+1190,07/22/2020,Male,21,Fort Collins,Confirmed
+1191,07/24/2020,Male,30,Estes Park,Confirmed
+1192,07/24/2020,Male,33,Fort Collins,Confirmed
+1193,07/24/2020,Male,34,Bellvue,Confirmed
+1194,07/24/2020,Male,28,Fort Collins,Confirmed
+1195,07/24/2020,Male,40,Loveland,Probable
+1196,07/24/2020,Female,36,Loveland,Probable
+1197,07/24/2020,Male,43,Johnstown,Confirmed
+1198,07/24/2020,Female,21,Fort Collins,Confirmed
+1199,07/24/2020,Male,21,Fort Collins,Confirmed
+1200,07/24/2020,Male,28,Loveland,Confirmed
+1201,07/24/2020,Male,54,Windsor,Confirmed
+1202,07/24/2020,Male,38,Fort Collins,Confirmed
+1203,07/24/2020,Male,20,Fort Collins,Confirmed
+1204,07/24/2020,Female,20,Berthoud,Confirmed
+1205,07/24/2020,Female,14,Fort Collins,Confirmed
+1206,07/24/2020,Female,39,Timnath,Confirmed
+1207,07/24/2020,Male,44,Timnath,Confirmed
+1208,07/24/2020,Female,52,Loveland,Confirmed
+1209,07/24/2020,Male,22,Fort Collins,Confirmed
+1210,07/24/2020,Female,84,Fort Collins,Confirmed
+1211,07/24/2020,Female,19,Fort Collins,Confirmed
+1212,07/24/2020,Female,75,Fort Collins,Confirmed
+1213,07/25/2020,Male,18,Berthoud,Confirmed
+1214,07/25/2020,Male,24,Fort Collins,Confirmed
+1215,07/25/2020,Female,44,Berthoud,Confirmed
+1216,07/24/2020,Male,21,Fort Collins,Confirmed
+1217,07/25/2020,Female,24,Wellington,Confirmed
+1218,07/25/2020,Male,27,Fort Collins,Confirmed
+1219,07/25/2020,Male,47,Loveland,Confirmed
+1220,07/25/2020,Male,20,Fort Collins,Confirmed
+1221,07/25/2020,Male,64,Fort Collins,Confirmed
+1222,07/25/2020,Male,20,Fort Collins,Confirmed
+1223,07/25/2020,Female,30,Loveland,Confirmed
+1224,07/25/2020,Male,45,Loveland,Confirmed
+1225,07/25/2020,Male,51,Fort Collins,Confirmed
+1226,07/25/2020,Female,20,Fort Collins,Confirmed
+1227,07/25/2020,Male,42,Estes Park,Confirmed
+1228,07/25/2020,Male,21,Fort Collins,Confirmed
+1229,07/25/2020,Male,21,Fort Collins,Confirmed
+1230,07/26/2020,Male,24,Fort Collins,Confirmed
+1231,07/26/2020,Female,20,Fort Collins,Confirmed
+1232,07/26/2020,Male,45,Berthoud,Confirmed
+1233,07/25/2020,Male,49,Fort Collins,Confirmed
+1234,07/26/2020,Male,24,Loveland,Confirmed
+1235,07/27/2020,Female,32,Loveland,Confirmed
+1236,07/27/2020,Male,47,Johnstown,Confirmed
+1237,07/22/2020,Male,32,Fort Collins,Confirmed
+1238,07/27/2020,Male,25,Berthoud,Confirmed
+1239,07/27/2020,Male,69,Fort Collins,Confirmed
+1240,07/27/2020,Female,21,Loveland,Confirmed
+1241,07/27/2020,Female,21,Fort Collins,Confirmed
+1242,07/27/2020,Male,37,Fort Collins,Confirmed
+1243,07/27/2020,Female,21,Fort Collins,Confirmed
+1244,07/27/2020,Male,24,Loveland,Confirmed
+1245,07/27/2020,Male,25,Fort Collins,Confirmed
+1246,07/27/2020,Female,14,Fort Collins,Confirmed
+1247,07/27/2020,Female,31,Fort Collins,Confirmed
+1248,07/27/2020,Male,38,Fort Collins,Confirmed
+1249,07/27/2020,Female,21,Fort Collins,Confirmed
+1250,07/27/2020,Male,23,Fort Collins,Confirmed
+1251,07/27/2020,Female,35,Loveland,Confirmed
+1252,07/27/2020,Female,44,Wellington,Confirmed
+1253,07/27/2020,Female,27,Fort Collins,Confirmed
+1254,07/27/2020,Male,18,Fort Collins,Confirmed
+1255,07/27/2020,Male,49,Fort Collins,Confirmed
+1256,07/27/2020,Male,82,Fort Collins,Probable
+1257,07/27/2020,Female,79,Fort Collins,Probable
+1258,07/27/2020,Male,23,Fort Collins,Confirmed
+1259,07/27/2020,Male,23,Fort Collins,Confirmed
+1260,07/27/2020,Male,31,Fort Collins,Confirmed
+1261,07/27/2020,Female,48,Fort Collins,Confirmed
+1262,07/27/2020,Male,26,Fort Collins,Confirmed
+1263,07/27/2020,Female,18,Loveland,Confirmed
+1264,07/27/2020,Male,20,Fort Collins,Confirmed
+1265,07/27/2020,Male,21,Fort Collins,Confirmed
+1266,07/27/2020,Female,23,Fort Collins,Confirmed
+1267,07/27/2020,Male,20,Fort Collins,Confirmed
+1268,07/27/2020,Male,34,Fort Collins,Confirmed
+1269,07/27/2020,Male,30,Berthoud,Confirmed
+1270,07/27/2020,Female,20,Fort Collins,Confirmed
+1271,07/28/2020,Female,17,Loveland,Confirmed
+1272,07/28/2020,Male,18,Fort Collins,Confirmed
+1273,07/28/2020,Female,33,Estes Park,Confirmed
+1274,07/27/2020,Male,17,Fort Collins,Confirmed
+1275,07/28/2020,Female,27,Fort Collins,Confirmed
+1276,07/22/2020,Female,20,Fort Collins,Confirmed
+1277,07/27/2020,Female,20,Fort Collins,Confirmed
+1278,07/28/2020,Male,58,Loveland,Confirmed
+1279,07/27/2020,Male,21,Fort Collins,Confirmed
+1280,07/27/2020,Female,24,Fort Collins,Confirmed
+1281,07/25/2020,Female,30,Wellington,Confirmed
+1282,07/27/2020,Male,25,Fort Collins,Confirmed
+1283,07/24/2020,Male,40,Estes Park,Confirmed
+1284,07/28/2020,Female,23,Wellington,Confirmed
+1285,07/28/2020,Male,36,Fort Collins,Confirmed
+1286,07/28/2020,Male,62,Fort Collins,Confirmed
+1287,07/28/2020,Female,42,Loveland,Confirmed
+1288,07/28/2020,Female,60,Fort Collins,Confirmed
+1289,07/28/2020,Female,53,Loveland,Confirmed
+1290,07/29/2020,Female,53,Timnath,Confirmed
+1291,07/29/2020,Male,22,Fort Collins,Confirmed
+1292,07/29/2020,Female,25,Loveland,Confirmed
+1293,07/29/2020,Male,29,Fort Collins,Confirmed
+1294,07/29/2020,Female,25,Loveland,Confirmed
+1295,07/29/2020,Male,28,Fort Collins,Confirmed
+1296,07/29/2020,Male,1,Fort Collins,Confirmed
+1297,07/29/2020,Male,29,Fort Collins,Confirmed
+1298,07/29/2020,Male,21,Fort Collins,Confirmed
+1299,07/29/2020,Male,20,Fort Collins,Confirmed
+1300,07/30/2020,Male,20,Fort Collins,Confirmed
+1301,07/30/2020,Male,33,Fort Collins,Confirmed
+1302,07/30/2020,Male,21,Fort Collins,Confirmed
+1303,07/29/2020,Male,25,Fort Collins,Confirmed
+1304,07/28/2020,Female,19,Fort Collins,Confirmed
+1305,07/28/2020,Female,22,Fort Collins,Confirmed
+1306,07/28/2020,Female,20,Fort Collins,Confirmed
+1307,07/28/2020,Female,30,Loveland,Confirmed
+1308,07/28/2020,Male,24,Fort Collins,Confirmed
+1309,07/28/2020,Male,21,Fort Collins,Confirmed
+1310,07/28/2020,Female,24,Fort Collins,Confirmed
+1311,07/28/2020,Female,23,Fort Collins,Confirmed
+1312,07/30/2020,Male,21,Fort Collins,Confirmed
+1313,07/30/2020,Female,51,Fort Collins,Confirmed
+1314,07/30/2020,male,55,Fort Collins,Confirmed
+1315,07/29/2020,Female,9,Fort Collins,Confirmed
+1316,07/30/2020,Female,65,Loveland,Confirmed
+1317,07/30/2020,Female,21,Fort Collins,Confirmed
+1318,07/30/2020,Male,24,Fort Collins,Confirmed
+1319,07/30/2020,Male,16,Loveland,Confirmed
+1320,07/30/2020,Female,22,Fort Collins,Confirmed
+1321,07/30/2020,Female,23,Fort Collins,Confirmed
+1322,07/30/2020,Male,18,Wellington,Confirmed
+1323,07/30/2020,Female,49,Fort Collins,Confirmed
+1324,07/30/2020,Female,21,Fort Collins,Confirmed
+1325,07/30/2020,Female,30,Fort Collins,Confirmed
+1326,07/30/2020,Female,92,Fort Collins,Confirmed
+1327,07/30/2020,Female,7,Loveland,Confirmed
+1328,07/30/2020,Female,48,Fort Collins,Confirmed
+1329,07/30/2020,Female,19,Berthoud,Confirmed
+1330,07/30/2020,Male,27,Fort Collins,Confirmed
+1331,07/29/2020,Male,21,Fort Collins,Confirmed
+1332,07/27/2020,Male,30,Berthoud,Confirmed
+1333,07/31/2020,Female,20,Fort Collins,Confirmed
+1334,07/31/2020,Female,29,Fort Collins,Confirmed
+1335,07/31/2020,Female,26,Fort Collins,Confirmed
+1336,07/31/2020,Female,21,Fort Collins,Confirmed
+1337,07/31/2020,Male,18,Wellington,Confirmed
+1338,07/27/2020,Male,27,Loveland,Confirmed
+1339,07/31/2020,Male,7,Berthoud,Confirmed
+1340,07/31/2020,Female,37,Fort Collins,Confirmed
+1341,07/31/2020,Male,4,Berthoud,Confirmed
+1342,07/31/2020,Male,22,Fort Collins,Confirmed
+1343,07/31/2020,Female,8,Loveland,Confirmed
+1344,07/31/2020,Female,30,Berthoud,Confirmed
+1345,07/31/2020,Female,56,Loveland,Confirmed
+1346,07/31/2020,Female,33,Fort Collins,Confirmed
+1347,07/31/2020,Male,21,Fort Collins,Confirmed
+1348,07/31/2020,Female,19,Loveland,Confirmed
+1349,07/31/2020,Female,21,Loveland,Confirmed
+1350,08/01/2020,Male,47,LaPorte,Confirmed
+1351,08/01/2020,Male,21,Fort Collins,Confirmed
+1352,08/01/2020,Male,53,Loveland,Confirmed
+1353,08/01/2020,Male,19,Fort Collins,Confirmed
+1354,08/01/2020,Male,22,Fort Collins,Confirmed
+1355,08/01/2020,Male,40,Fort Collins,Confirmed
+1356,08/01/2020,Male,21,Fort Collins,Confirmed
+1357,08/01/2020,Male,22,Fort Collins,Confirmed
+1358,08/01/2020,Female,43,Berthoud,Confirmed
+1359,08/01/2020,Female,18,Loveland,Confirmed
+1360,08/01/2020,Female,20,Fort Collins,Confirmed
+1361,08/01/2020,Female,20,Wellington,Confirmed
+1362,08/01/2020,Female,20,Fort Collins,Confirmed
+1363,08/01/2020,Male,54,Estes Park,Confirmed
+1364,08/01/2020,Female,37,Fort Collins,Confirmed
+1365,08/01/2020,Male,2,Fort Collins,Confirmed
+1366,7/31/2020,Male,29,Fort Collins,Confirmed
+1367,7/31/2020,Female,21,Fort Collins,Confirmed
+1368,7/31/2020,Female,22,Fort Collins,Confirmed
+1369,8/1/2020,Male,20,Wellington,Confirmed
+1370,7/31/2020,Male,21,Fort Collins,Confirmed
+1371,8/1/2020,Male,19,Fort Collins,Confirmed
+1372,8/1/2020,Male,20,Fort Collins,Confirmed
+1373,8/2/2020,Male,36,Wellington,Confirmed
+1374,8/1/2020,Female,21,Fort Collins,Confirmed
+1375,8/2/2020,Male,19,Fort Collins,Confirmed
+1376,8/2/2020,Female,17,Loveland,Confirmed
+1377,8/2/2020,Male,19,Fort Collins,Confirmed
+1378,8/2/2020,Male,19,Fort Collins,Confirmed
+1379,8/2/2020,Male,22,Fort Collins,Confirmed
+1380,8/2/2020,Female,23,Estes Park,Confirmed
+1381,07/30/2020,Male,28,Fort Collins,Confirmed
+1382,8/2/2020,Male,19,Fort Collins,Confirmed
+1383,8/2/2020,Female,56,Loveland,Confirmed
+1384,8/2/2020,Female,23,Fort Collins,Confirmed
+1385,8/2/2020,Male,21,Fort Collins,Confirmed
+1386,8/2/2020,Female,35,Fort Collins,Confirmed
+1387,8/2/2020,Male,22,Fort Collins,Confirmed
+1388,8/2/2020,Female,36,Timnath,Confirmed
+1389,08/02/2020,Female,23,Fort Collins,Confirmed
+1390,08/03/2020,Male,21,Fort Collins,Confirmed
+1391,07/31/2020,Male,16,Fort Collins,Confirmed
+1392,07/30/2020,Male,63,Fort Collins,Confirmed
+1393,07/31/2020,Male,11,Fort Collins,Confirmed
+1394,08/04/2020,Female,11,Loveland,Probable
+1395,08/04/2020,Male,23,Fort Collins,Confirmed
+1396,08/04/2020,Male,28,Fort Collins,Confirmed
+1397,08/04/2020,Male,66,Fort Collins,Confirmed
+1398,08/04/2020,Male,70,Fort Collins,Confirmed
+1399,08/04/2020,Male,20,Fort Collins,Confirmed
+1400,08/04/2020,Female,21,Fort Collins,Confirmed
+1401,08/04/2020,Male,65,Estes Park,Confirmed
+1402,08/04/2020,Female,15,Wellington,Confirmed
+1403,08/04/2020,Female,36,Fort Collins,Confirmed
+1404,08/04/2020,Male,77,Fort Collins,Confirmed
+1405,08/04/2020,Female,80,Estes Park,Confirmed
+1406,08/04/2020,Male,22,Loveland,Confirmed
+1407,08/04/2020,Female,24,Loveland,Confirmed
+1408,08/04/2020,Female,44,Fort Collins,Confirmed
+1409,08/04/2020,Female,65,Estes Park,Confirmed
+1410,08/04/2020,Female,19,Fort Collins,Confirmed
+1411,08/04/2020,Male,20,Fort Collins,Confirmed
+1412,08/04/2020,Male,58,Loveland,Confirmed
+1413,08/04/2020,Male,30,Estes Park,Confirmed
+1414,08/04/2020,Male,51,Berthoud,Confirmed
+1415,08/04/2020,Male,23,Fort Collins,Confirmed
+1416,08/04/2020,Male,22,Fort Collins,Confirmed
+1417,08/04/2020,Male,16,Fort Collins,Confirmed
+1418,08/04/2020,Female,29,Fort Collins,Confirmed
+1419,08/04/2020,Male,20,Fort Collins,Confirmed
+1420,08/04/2020,Male,37,Fort Collins,Confirmed
+1421,08/03/2020,Male,30,Fort Collins,Confirmed
+1422,07/30/2020,Female,31,Wellington,Confirmed
+1423,08/03/2020,Male,25,Fort Collins,Confirmed
+1424,08/03/2020,Female,25,Fort Collins,Confirmed
+1425,08/05/2020,Female,47,Loveland,Confirmed
+1426,08/05/2020,Female,17,Loveland,Confirmed
+1427,08/05/2020,Male,51,Johnstown,Confirmed
+1428,08/04/2020,Female,16,Timnath,Confirmed
+1429,08/04/2020,Female,21,Fort Collins,Confirmed
+1430,08/04/2020,Male,51,Timnath,Confirmed
+1431,08/05/2020,Female,20,Fort Collins,Confirmed
+1432,08/05/2020,Female,51,Johnstown,Confirmed
+1433,08/05/2020,Male,35,Fort Collins,Confirmed
+1434,08/05/2020,Male,58,Loveland,Confirmed
+1435,08/05/2020,Male,18,Fort Collins,Confirmed
+1436,08/05/2020,Female,21,Fort Collins,Confirmed
+1437,08/05/2020,Male,19,Loveland,Confirmed
+1438,08/05/2020,Male,18,Fort Collins,Confirmed
+1439,08/05/2020,Female,20,Fort Collins,Confirmed
+1440,08/05/2020,Male,17,Fort Collins,Confirmed
+1441,07/31/2020,Female,22,Fort Collins,Confirmed
+1442,07/23/2020,Female,20,Fort Collins,Confirmed
+1443,08/03/2020,Female,5,Loveland,Confirmed
+1444,08/03/2020,Female,10,Loveland,Confirmed
+1445,08/06/2020,Female,40,Fort Collins,Confirmed
+1446,08/06/2020,Male,21,Fort Collins,Confirmed
+1447,08/06/2020,Male,67,Estes Park,Confirmed
+1448,08/06/2020,Female,39,Wellington,Confirmed
+1449,08/06/2020,Female,21,Fort Collins,Confirmed
+1450,08/03/2020,Male,14,Loveland,Confirmed
+1451,08/06/2020,Male,52,Johnstown,Confirmed
+1452,08/03/2020,Male,3,Johnstown,Confirmed
+1453,07/27/2020,Female,21,Fort Collins,Confirmed
+1454,08/06/2020,Male,1,Fort Collins,Confirmed
+1455,08/06/2020,Male,42,Timnath,Confirmed
+1456,08/06/2020,Male,7,Timnath,Confirmed
+1457,08/06/2020,Female,20,Fort Collins,Confirmed
+1458,08/06/2020,Female,23,Fort Collins,Confirmed
+1459,08/06/2020,Male,30,Fort Collins,Confirmed
+1460,08/06/2020,Male,39,Fort Collins,Confirmed
+1461,08/06/2020,Male,11,Fort Collins,Confirmed
+1462,08/06/2020,Female,18,Fort Collins,Confirmed
+1463,08/06/2020,Female,18,Fort Collins,Confirmed
+1464,08/04/2020,Female,24,Fort Collins,Confirmed
+1465,08/03/2020,Male,26,Fort Collins,Confirmed
+1466,08/07/2020,Female,18,Fort Collins,Confirmed
+1467,08/07/2020,Female,39,Wellington,Confirmed
+1468,08/07/2020,Male,53,Loveland,Confirmed
+1469,08/07/2020,Male,33,Fort Collins,Confirmed
+1470,08/07/2020,Female,18,Loveland,Confirmed
+1471,08/07/2020,Female,18,Loveland,Confirmed
+1472,08/07/2020,Female,70,Estes Park,Confirmed
+1473,08/07/2020,Female,7,Fort Collins,Confirmed
+1474,08/06/2020,Male,22,Fort Collins,Confirmed
+1475,08/07/2020,Female,19,Fort Collins,Confirmed
+1476,08/07/2020,Male,23,Fort Collins,Confirmed
+1477,08/07/2020,Male,21,Fort Collins,Confirmed
+1478,08/07/2020,Female,21,Fort Collins,Confirmed
+1479,08/07/2020,Male,22,Fort Collins,Confirmed
+1480,08/07/2020,Female,13,Fort Collins,Confirmed
+1481,08/07/2020,Male,23,Windsor,Confirmed
+1482,08/07/2020,Female,25,Fort Collins,Confirmed
+1483,08/07/2020,Male,21,Fort Collins,Confirmed
+1484,08/07/2020,Male,16,Fort Collins,Confirmed
+1485,08/07/2020,Male,21,Fort Collins,Confirmed
+1486,08/07/2020,Female,9,Timnath,Confirmed
+1487,08/07/2020,Female,18,Fort Collins,Confirmed
+1488,08/07/2020,Female,40,Timnath,Confirmed
+1489,08/07/2020,Female,31,Fort Collins,Confirmed
+1490,08/07/2020,Male,19,Fort Collins,Confirmed
+1491,08/07/2020,Male,22,Fort Collins,Confirmed
+1492,08/07/2020,Female,50,Fort Collins,Confirmed
+1493,08/07/2020,Female,41,Fort Collins,Confirmed
+1494,08/07/2020,Male,22,Fort Collins,Confirmed
+1495,08/07/2020,Male,35,Fort Collins,Confirmed
+1496,08/07/2020,Female,23,Fort Collins,Confirmed
+1497,08/07/2020,Male,50,Windsor,Confirmed
+1498,08/08/2020,Female,44,Windsor,Confirmed
+1499,08/08/2020,Male,35,Fort Collins,Confirmed
+1500,08/08/2020,Male,23,Fort Collins,Confirmed
+1501,08/08/2020,Female,66,Fort Collins,Confirmed
+1502,08/08/2020,Female,21,Fort Collins,Confirmed
+1503,08/04/2020,Female,40,Fort Collins,Confirmed
+1504,08/08/2020,Male,36,Fort Collins,Confirmed
+1505,08/08/2020,Female,21,Fort Collins,Confirmed
+1506,08/07/2020,Female,14,Fort Collins,Confirmed
+1507,08/08/2020,Male,24,Fort Collins,Confirmed
+1508,08/08/2020,Male,18,Fort Collins,Confirmed
+1509,08/05/2020,Male,20,Fort Collins,Confirmed
+1510,08/08/2020,Male,26,Fort Collins,Confirmed
+1511,08/08/2020,Female,20,Fort Collins,Confirmed
+1512,08/08/2020,Female,36,Fort Collins,Confirmed
+1513,08/08/2020,Female,30,Fort Collins,Confirmed
+1514,08/08/2020,Female,27,Loveland,Confirmed
+1515,08/08/2020,Male,21,Loveland,Confirmed
+1516,08/08/2020,Male,41,Fort Collins,Confirmed
+1517,08/08/2020,Female,23,Fort Collins,Confirmed
+1518,08/08/2020,Male,22,Fort Collins,Confirmed
+1519,08/08/2020,Male,28,Loveland,Confirmed
+1520,08/09/2020,Female,21,Timnath,Confirmed
+1521,08/04/2020,Male,21,Fort Collins,Confirmed
+1522,08/04/2020,Female,27,Fort Collins,Confirmed
+1523,08/09/2020,Female,19,Fort Collins,Confirmed
+1524,08/09/2020,Male,3,Fort Collins,Confirmed
+1525,08/09/2020,Male,22,Fort Collins,Confirmed
+1526,08/09/2020,Female,20,Fort Collins,Confirmed
+1527,08/09/2020,Male,48,Timnath,Confirmed
+1528,08/09/2020,Female,22,Fort Collins,Confirmed
+1529,08/09/2020,Female,25,Fort Collins,Confirmed
+1530,08/09/2020,Female,18,Fort Collins,Confirmed
+1531,08/09/2020,Male,19,Fort Collins,Confirmed
+1532,08/09/2020,Male,18,Fort Collins,Confirmed
+1533,08/09/2020,Male,40,Fort Collins,Confirmed
+1534,08/09/2020,Male,59,Wellington,Confirmed
+1535,08/09/2020,Female,75,Fort Collins,Confirmed
+1536,08/09/2020,Male,21,Fort Collins,Confirmed
+1537,08/10/2020,Female,21,Fort Collins,Confirmed
+1538,08/09/2020,Female,21,Fort Collins,Confirmed
+1539,08/09/2020,Female,21,Fort Collins,Confirmed
+1540,08/10/2020,Female,20,Fort Collins,Confirmed
+1541,08/10/2020,Female,24,Fort Collins,Confirmed
+1542,08/07/2020,Female,40,Fort Collins,Confirmed
+1543,08/06/2020,Male,22,Fort Collins,Confirmed
+1544,08/07/2020,Male,18,Fort Collins,Confirmed
