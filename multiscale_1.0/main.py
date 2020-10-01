@@ -1,5 +1,4 @@
 import multiscale_model
-import plot
 import numpy as np
 import sys
 
@@ -48,7 +47,7 @@ num_weeks = int(sys.argv[6])
 
 # Run and plot
 Cs, solutions, variances = multiscale_model.run(initial_infected, num_weeks, class_periods, class_size,
-                     n, beta, gamma, lam, kappa,  C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size, agent_ens = agent_ensN)
+                                                n, beta, gamma, lam, kappa, C, Q_percent, compartment_sizes, schedule_type = stype, majors = major_size, agent_ens = agent_ensN)
 
 savenamesol = "multi_runs/multi_Q=" + str(Q_percent) + "_csize=" + str(class_size) + "_per=" + str(class_periods) + "_msize" + str(major_size) + "_sch=" + str(stype) + "_coupling=" + str(uni_city_coupling) + ".npy"
 #

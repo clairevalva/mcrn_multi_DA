@@ -1,5 +1,4 @@
 import numpy.random as npr
-from dapper import *
 import get_case_data_city
 
 # Dimensions
