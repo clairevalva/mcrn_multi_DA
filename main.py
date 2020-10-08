@@ -36,9 +36,10 @@ stype = str(sys.argv[5])
 # Initial conditions
 # CSU, Fort Collins, Larimer County population sizes
 uni_size = int(33.5*(10**3)) # 33.5k
-city_size = int(168*(10**3)) # 168k
+#city_size = int(168*(10**3)) # 168k
+city_size = 0
 county_size = int(357000)  # not used yet
-compartment_sizes = [uni_size, city_size - uni_size]
+compartment_sizes = [uni_size, 0]#city_size - uni_size]
 n = len(compartment_sizes)
 initial_infected = 1 # Always starts in the largest compartment!
 

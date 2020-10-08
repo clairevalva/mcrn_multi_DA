@@ -26,7 +26,8 @@ def run(initial_infected, num_weeks, class_periods, class_size,
     E = [0 for compartment in compartment_sizes]
     Q = [0 for compartment in compartment_sizes]
     I = [0 for compartment in compartment_sizes]
-    I[1] = initial_infected # put initial infected population in the city level
+    # change the following line back to 1!
+    I[0] = initial_infected # put initial infected population in the city level
     R = [0 for compartment in compartment_sizes]
     D = [0 for compartment in compartment_sizes]
     
