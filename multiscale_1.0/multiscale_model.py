@@ -152,7 +152,7 @@ def run(initial_infected, num_weeks, class_periods, class_size,
 
             ## Run compartmental model for one day
             solution = sint.solve_ivp(compartmental_model.seqird, interval, y_0, max_step=maxstep,
-                                    args=(n, beta, gamma, lam, kappa, C, Q_percent))
+                                      args=(n, beta, gamma, lam, kappa, C, Q_percent))
            
             ## Append to group
             solutions.append(solution)
