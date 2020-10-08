@@ -9,9 +9,10 @@ from build_network import build_network
 
 population = 10
 network = build_network(population)
-L = nx.laplacian_matrix(network)
+L = nx.laplacian_matrix(network).todense()
+print("L", L)
 
-I = np.zeros(10)
+I = np.zeros((10,1))
 
 # Initial condition
 I[0] = 1
