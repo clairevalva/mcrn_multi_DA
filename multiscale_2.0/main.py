@@ -1,53 +1,69 @@
-# import multiscale_model
 import numpy as np
-# import sys
-import scipy.integrate as scint
 import initialize_population
-import build_network
-import solver
 import matplotlib.pyplot as plt
-import networkx as nx
 import solver
 
 # Model info
-total_time = 10
+num_weeks = 2
+infectious_time = 3 #number of days a person stays infected
 
 # Schedule
 
 # Network information
-population = 100
-seed = 1
-network = build_network.make(population, seed)
-L = nx.laplacian_matrix(network)# sparse Laplacian matrix
+population = 500
+L = initialize_population.build_L(population)
 
 # Initial conditions
 I_0 = np.zeros(population) #should be zeros
-I_0 = np.reshape(I_0, (population, 1))
 I_0[0] = 1
 
 # Disease spread information
-beta = .3
+beta = .0001 * population
 threshold = 0.25
 
 # Integrator settings
-step_size = 0.01
+step_size = 0.1
 
 #######################################################################################################################
 # MAIN #
 #######################################################################################################################
 
-#Run the solver
-I = solver.run_model(I_0, total_time, step_size, beta, L)
+#scheduler.get_L(L, 6)
 
-# Plot the infection curve for each node
-plt.clf()
+#Run the solver
+t, I = solver.run_model(population, I_0, num_weeks, step_size, beta, L, infectious_time)
+
+
+#######################################################################################################################
+# Plotting #
+#######################################################################################################################
+
+fig, axs = plt.subplots(2, sharex=True)
+# # Plot the infection curve for each node
 for i in range(population):
-    plt.plot(I.t, I.y[i])
-plt.show()
+    axs[0].plot(t, I[i])
+# axs[0].xlabel("Time (days)")
+# axs[0].ylabel("Infection Percentage")
+
+# plt.clf()
+# for i in range(population):
+#     plt.plot(t, I[i, :])
+# plt.xlabel("Time (days)")
+# plt.ylabel("Infection Percentage")
+# plt.show()
 
 # Plot the total infected
-# total_infected = np.zeros_like(I.y[1])
-# for i in range(population):
-#     total_infected = total_infected + I.y[i]
-# plt.plot(I.t, total_infected, label="Total infected")
+total_infected = np.zeros_like(I[1])
+for i in range(population):
+    total_infected = total_infected + np.round(I[i])
+axs[1].plot(t, total_infected)
+plt.xlabel("Time (days)")
+plt.show()
+
+#######################################################################################################################
+# EXTRAS #
+#######################################################################################################################
+
+# Draw a graph
+# nx.draw(network_trivial, with_labels=True, font_weight='bold')
 # plt.show()
