@@ -21,7 +21,7 @@ def dIdt(t, I, max_step, L, beta):
             Idot[j] = (1-I[j])/max_step
         else:
             mat = L @ I
-            Idot[j] = -beta * mat[j]
+            Idot[j] = -beta * round(mat[j])
     return Idot
 
 def step_hour(week, day, hour, step_size, L, I_0,population, beta):

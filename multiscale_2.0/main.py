@@ -5,7 +5,7 @@ import solver
 
 # Model info
 num_weeks = 2
-infectious_time = 3 #number of days a person stays infected
+infectious_time = 4 #number of days a person stays infected
 
 # Schedule
 
@@ -18,7 +18,7 @@ I_0 = np.zeros(population) #should be zeros
 I_0[0] = 1
 
 # Disease spread information
-beta = .0001 * population
+beta = .0002 * population
 threshold = 0.25
 
 # Integrator settings
