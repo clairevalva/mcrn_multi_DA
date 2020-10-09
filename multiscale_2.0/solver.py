@@ -5,22 +5,27 @@ For a fixed interval draw a new network (e.g., each day).  Then, allow diffusion
  machine timestep.
 
 '''
-
 import numpy as np
+import scipy.integrate as scint
 
-
-def dIdt(t, I, L, threshold = .25):
-    
-    I = np.reshape(I, (1,10))
+def dIdt(t, I, max_step, L, beta):
+    threshold = .25
     Idot = np.zeros_like(I)
-    
-    # print(I.shape)
+
     for j in range(len(I)):
-        if I[j,0] >= 1:
-            Idot[j,0] = 0
+        if I[j] >= 1-10**(-6):
+            Idot[j] = 0
+        elif I[j] >= threshold:
+            Idot[j] = (1-I[j])/max_step
         else:
-             mat = np.matmul(L,I)
-             Idot[j,0] = mat[j]
+            mat = L @ I
+            Idot[j] = -beta * mat[j]
     return Idot
 
 
+def run_model(I_0, total_time, step_size, beta, L):
+    interval = [0, total_time]
+
+    I = scint.solve_ivp(dIdt, interval, I_0[:,0], method='RK45', max_step=step_size, min_step=step_size,
+                            args=(step_size, L, beta))
+    return I
