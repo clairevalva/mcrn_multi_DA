@@ -12,10 +12,10 @@ def build_L(population):
 
     # Make Weekday L matrices
     # Classes
-    networkWD1 = network.make(population, seed=1, nearest_neighbors=4, prob_rewiring=.5)
-    networkWD2 = network.make(population, seed=2, nearest_neighbors=4, prob_rewiring=.5)
-    networkWD3 = network.make(population, seed=3, nearest_neighbors=4, prob_rewiring=.5)
-    networkWD4 = network.make(population, seed=4, nearest_neighbors=4, prob_rewiring=.5)
+    networkWD1 = network.make(population, seed=5, nearest_neighbors=4, prob_rewiring=.5)
+    networkWD2 = network.make(population, seed=6, nearest_neighbors=4, prob_rewiring=.5)
+    networkWD3 = network.make(population, seed=7, nearest_neighbors=4, prob_rewiring=.5)
+    networkWD4 = network.make(population, seed=8, nearest_neighbors=4, prob_rewiring=.5)
     LWD1 = nx.laplacian_matrix(networkWD1)
     LWD2 = nx.laplacian_matrix(networkWD2)
     LWD3 = nx.laplacian_matrix(networkWD3)
