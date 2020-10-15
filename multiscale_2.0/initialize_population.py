@@ -6,6 +6,8 @@ import numpy as np
 import networkx as nx
 import network
 
+
+
 def build_L(population):
     layers = 7 # number of schedule layers
     L = []
