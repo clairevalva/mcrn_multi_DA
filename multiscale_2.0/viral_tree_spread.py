@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 # Parameters
 population = 500
 num_weeks = 1
-num_infected = 1
+num_infected = 2
 infect_seed = False
 p_infected = 0.02
 sicklen = 4
