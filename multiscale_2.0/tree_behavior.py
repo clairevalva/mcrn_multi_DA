@@ -18,7 +18,7 @@ def initialize_tree(num_infected, total_pop, seed = False, return_initial = True
     tree.add_nodes_from(initial_infected)
     
     for node in initial_infected:
-        tree.nodes[node]["I_time"] = 0
+        tree.nodes[node]["I_time"] = -1
         
     if return_initial:
         return tree, initial_infected
@@ -47,38 +47,58 @@ def addinfected_all(tree, add_list, I_time):
     
     this code just really functions as a wrapper for ease
     """
-    
+    print(add_list)
     for entry in add_list:
-        tree = addinfected_fromnode(tree, entry[0], entry[1], I_time)
+        # print("ent1", entry[1])
+        # print(len(entry[1]))
+        if np.sum(entry[1]) > 0:
+            tree = addinfected_fromnode(tree, entry[0], entry[1], I_time)
         
     return tree                           
     
-
-def connected(node, L):
-    """
-    i don't know how the network is structured, this should return a list of everyone people are connected to
-    """
-    print("scream")
     
 
-def suseptible_connects(node, L, tree):
-    connects = connected(node, L)
-    return connects[connects not in tree.nodes()]
+def suseptible_connects(node, G, tree):
+    connects = np.array([n for n in G.neighbors(node)])
+    # print([connects not in np.array(tree.nodes())])
+    
+    return connects[connects not in np.array(tree.nodes())]
     
     
-def is_sick(tree, L, p_infected):
+def is_sick(tree, G, p_infected,I_time,sicklen):
+    
+    """
+    takes the tree (directed graph)
+    G (the schedule for whenever)
+    p_infected (the probability of infection)
+    """
     
     return_list = []
     
-    for node in tree.nodes():
-        connects = suseptible_connects(node, L, tree)
-        now_infected = []
-        sick = [flip(p_infected) for _ in range(len(connects))]
+    for entry in tree.nodes(data="I_time"):
+        node = entry[0]
+        still_sick = (entry[1] + sicklen) >= I_time
         
-        now_infected = [connects[j] for j in range(len(connects)) if sick[j]]
+        if still_sick:
+        
+            connects = suseptible_connects(node, G, tree).flatten()
+            # print("less", connects)
+            now_infected = []
+            sick = [flip(p_infected) for _ in range(len(connects))]
+        
+        
+            now_infected = connects[sick]
          
-        if len(now_infected) > 0:
-            return_list.append([node,now_infected])
+            if np.sum(sick) > 0:
+                return_list.append([node,now_infected])
     
     return np.array(return_list)
-    
+
+def remove_recovered(tree, G, current_day, sicklen):
+    for node in tree.nodes(data="I_time"):
+        #print(node[1],"node")
+        if node[1] + sicklen < current_day:
+            if node[0] in G.nodes():
+                G.remove_node(node[0])
+                
+    return G
