@@ -6,6 +6,7 @@ import network
 import numpy as np
 import tree_behavior
 import matplotlib.pyplot as plt
+import plot
 
 # Parameters
 population = 500
@@ -116,5 +117,10 @@ for week in range(num_weeks):
             sick_list = tree_behavior.is_sick(tree, G, p_infected,I_time,sicklen)
             tree = tree_behavior.addinfected_all(tree, sick_list, I_time)
             
-nx.draw(tree)
-plt.show()          
+# nx.draw(tree)
+# plt.show()  
+
+Gplot = plot.return_connected(tree, initial_infected[0])
+pos = plot.hierarchy_pos(Gplot)    
+nx.draw(Gplot, pos=pos, with_labels=True)
+plt.show()

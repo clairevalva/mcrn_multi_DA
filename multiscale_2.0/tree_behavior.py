@@ -33,7 +33,7 @@ def addinfected_fromnode(tree, root, persons_infected, I_time):
     
     """
     
-    tree.add_edges_from([(root, person) for person in persons_infected])
+    tree.add_edges_from([(root, person) for person in persons_infected if person not in tree])
     for node in persons_infected:
         tree.nodes[node]["I_time"] = I_time               
     return tree
@@ -47,10 +47,11 @@ def addinfected_all(tree, add_list, I_time):
     
     this code just really functions as a wrapper for ease
     """
-    print(add_list)
+    #print(add_list)
     for entry in add_list:
         # print("ent1", entry[1])
         # print(len(entry[1]))
+        
         if np.sum(entry[1]) > 0:
             tree = addinfected_fromnode(tree, entry[0], entry[1], I_time)
         
@@ -61,7 +62,7 @@ def addinfected_all(tree, add_list, I_time):
 def suseptible_connects(node, G, tree):
     connects = np.array([n for n in G.neighbors(node)])
     # print([connects not in np.array(tree.nodes())])
-    
+    #print(np.array(tree.nodes()))
     return connects[connects not in np.array(tree.nodes())]
     
     
@@ -102,3 +103,4 @@ def remove_recovered(tree, G, current_day, sicklen):
                 G.remove_node(node[0])
                 
     return G
+
