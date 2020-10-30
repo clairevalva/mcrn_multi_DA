@@ -8,6 +8,9 @@ import tree_behavior
 import matplotlib.pyplot as plt
 import plot
 
+# save path
+save_path = "model_runs/001_"
+
 # Parameters
 population = 500
 num_weeks = 1
@@ -124,3 +127,11 @@ Gplot = plot.return_connected(tree, initial_infected[0])
 pos = plot.hierarchy_pos(Gplot)    
 nx.draw(Gplot, pos=pos, with_labels=True)
 plt.show()
+
+
+# save everything
+to_save = [networkWD1, networkWD2, networkWD3, networkWD4, networkWD5, networkWE, tree]
+to_save_keys = ["WD1", "WD2", "WD3", "WD4", "WD5", "WE", "tree"]
+for entry in range(len(to_save_keys)):
+	nx.write_gpickle(to_save[entry], save_path + to_save_keys[entry] + ".gpickle")
+ 
